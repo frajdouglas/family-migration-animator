@@ -724,15 +724,20 @@ function App() {
             // console.log(requestIdArray)
           }, 1000 / 100);
         } else {
-          timerRef.current = setInterval(refreshTime, 1000);
+          if (yearsRef.current === time) {
+            console.log("STOP ANIMATION");
+            clearInterval(timerRef.current);
+          } else {
+            timerRef.current = setInterval(refreshTime, 1000);
+          }
         }
         counter = counter + 1;
       }
       animate(counter);
     }
-
+    console.log(yearsRef.current);
     if (yearsRef.current === time) {
-      // console.log(time);
+      console.log("STOP ANIMATION");
       clearInterval(timerRef.current);
     }
   }, [time]);
