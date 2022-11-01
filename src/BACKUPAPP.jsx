@@ -33,24 +33,24 @@ function App() {
   // ]);
 
   // different names but same start year
-  const [stagedData, setStagedData] = useState([
-    {
-          id: 2,
-          name: "fraser",
-          year: 2000,
-          generation: 10,
-          origin: "london",
-          destination: "edinburgh",
-        },
-        {
-          id: 5,
-          name: "Megan",
-          year: 2000,
-          generation: 5,
-          origin: "skegness",
-          destination: "oslo",
-        },
-  ]);
+  // const [stagedData, setStagedData] = useState([
+  //   {
+  //         id: 2,
+  //         name: "fraser",
+  //         year: 2000,
+  //         generation: 10,
+  //         origin: "london",
+  //         destination: "edinburgh",
+  //       },
+  //       {
+  //         id: 5,
+  //         name: "Megan",
+  //         year: 2000,
+  //         generation: 5,
+  //         origin: "skegness",
+  //         destination: "oslo",
+  //       },
+  // ]);
 
   // multiple routes, single name
   // const [stagedData, setStagedData] = useState([
@@ -222,7 +222,7 @@ function App() {
   //   },
   // ]);
 
-  // const [stagedData, setStagedData] = useState([]);
+  const [stagedData, setStagedData] = useState([]);
 
   // Reference for years data
   const latestYearRef = useRef(2030);
@@ -720,6 +720,81 @@ stagedDataCopy.push({
     }
   }, [time]);
 
+  if (stagedData.length === 0) {
+    return (
+      <div id="App">
+        <div id="toolbar">
+          <div id="Clock">{time}</div>;
+          <form>
+            <fieldset id="inputsContainer">
+              <label>
+                <p>Name</p>
+                <input
+                  required
+                  className="inputBox"
+                  name="name"
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
+                  value={name}
+                />
+              </label>
+              <label>
+                <p>Year</p>
+                <input
+                  className="inputBox"
+                  year="year"
+                  onChange={(e) => {
+                    setYear(e.target.value);
+                  }}
+                  value={year}
+                />
+              </label>
+              <label>
+                <p>Generation</p>
+                <input
+                  className="inputBox"
+                  generation="generation"
+                  onChange={(e) => {
+                    setGeneration(e.target.value);
+                  }}
+                  value={generation}
+                />
+              </label>
+              <label>
+                <p>Origin</p>
+                <input
+                  className="inputBox"
+                  origin="origin"
+                  onChange={(e) => {
+                    setOrigin(e.target.value);
+                  }}
+                  value={origin}
+                />
+              </label>
+              <label>
+                <p>Destination</p>
+                <input
+                  className="inputBox"
+                  destination="destination"
+                  onChange={(e) => {
+                    setDestination(e.target.value);
+                  }}
+                  value={destination}
+                />
+              </label>
+            </fieldset>
+            <button onClick={handleAddition}>Add</button>
+          </form>
+        </div>
+        <div
+          id="map"
+          ref={mapContainer}
+          style={{ width: "60%", height: "100vh" }}
+        />
+      </div>
+    );
+  } else {
     return (
       <div id="App">
         <div id="Clock">{time}</div>;
@@ -787,9 +862,9 @@ stagedDataCopy.push({
             <button onClick={handleAddition}>u</button>
           </form>
 
-          {stagedData.map((item,index) => {
+          {stagedData.map((item) => {
             return (
-              <div id="tableRow" key={`${item}${index}`}>
+              <div id="tableRow">
                 <div className="tableItem">{item.name}</div>
                 <div className="tableItem">{item.year}</div>
                 <div className="tableItem">{item.generation}</div>
@@ -811,5 +886,6 @@ stagedDataCopy.push({
       </div>
     );
   }
+}
 
 export default App;
