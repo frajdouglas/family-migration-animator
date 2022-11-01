@@ -1,38 +1,62 @@
 .App {
-  text-align: center;
+  box-sizing: border-box;
+  /* display: flex;
+  flex-direction: column; */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#Clock{
+  position: absolute;
+  right: 1vw;
+  top: 1vh;
+  z-index: 10;
+  border: 5px solid blue;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#map {
+  position: absolute;
+  left: 40vw;
+  top: 0vh;
+  width: 60vw;
+  height: 100vh;
+  border: 5px solid pink;
+  box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#toolbar {
+  width: 40vw;
+  height: 100vh;
+  border: 5px solid blue;
+  box-sizing: border-box;
+}
+
+#tableRow {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  width: 40vw;
+  box-sizing: border-box;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.tableItem {
+  border: 1px solid black;
+  width: 8vw;
+  height: 3vh;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#inputsContainer {
+  display: flex;
+  flex-direction: row;
+  /* gap : 3vw; */
+  width: 40vw;
+  box-sizing: border-box;
+}
+
+.inputBox {
+  width: 7vw;
+  /* border: 5px solid blue; */
+
 }
