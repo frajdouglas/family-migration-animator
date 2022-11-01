@@ -527,14 +527,15 @@ function App() {
         type: "circle",
         layout: {},
         paint: {
+          "circle-radius" : 10,
           "circle-color": [
             "interpolate",
             ["linear"],
             ["get", "generation"],
             0,
-            "#EE000E",
-            10,
             "#03ff03",
+            10,
+            "#EE000E",
           ],
         },
       });
