@@ -16,15 +16,161 @@ function App() {
   const [generation, setGeneration] = useState("");
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
+
+  // COMMENT OUT TO SELECT TEST SCENARIOS
+
+  // single route and name
+  // const [stagedData, setStagedData] = useState([
+  //   {
+  //     id: 1,
+  //     name: "fraser",
+  //     year: 1995,
+  //     generation: 10,
+  //     origin: "derby",
+  //     destination: "london",
+  //   }
+  // ]);
+
+  // different names but same start year
+  // const [stagedData, setStagedData] = useState([
+  //   {
+  //         id: 2,
+  //         name: "fraser",
+  //         year: 2000,
+  //         generation: 10,
+  //         origin: "london",
+  //         destination: "edinburgh",
+  //       },
+  //       {
+  //         id: 5,
+  //         name: "Megan",
+  //         year: 2000,
+  //         generation: 5,
+  //         origin: "skegness",
+  //         destination: "oslo",
+  //       },
+  // ]);
+
+  // multiple routes, single name
+  // const [stagedData, setStagedData] = useState([
+  //   {
+  //     id: 1,
+  //     name: "fraser",
+  //     year: 1995,
+  //     generation: 10,
+  //     origin: "derby",
+  //     destination: "london",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "fraser",
+  //     year: 2000,
+  //     generation: 10,
+  //     origin: "london",
+  //     destination: "edinburgh",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "fraser",
+  //     year: 2005,
+  //     generation: 10,
+  //     origin: "edinburgh",
+  //     destination: "berlin",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "fraser",
+  //     year: 2015,
+  //     generation: 10,
+  //     origin: "berlin",
+  //     destination: "budapest",
+  //   },
+  // ]);
+
+  // multiple routes, multiple names
+  // const [stagedData, setStagedData] = useState([
+  //   {
+  //     id: 1,
+  //     name: "fraser",
+  //     year: 1995,
+  //     generation: 10,
+  //     origin: "derby",
+  //     destination: "london",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "fraser",
+  //     year: 2000,
+  //     generation: 10,
+  //     origin: "london",
+  //     destination: "edinburgh",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "fraser",
+  //     year: 2005,
+  //     generation: 10,
+  //     origin: "edinburgh",
+  //     destination: "berlin",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "fraser",
+  //     year: 2015,
+  //     generation: 10,
+  //     origin: "berlin",
+  //     destination: "budapest",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Megan",
+  //     year: 2001,
+  //     generation: 5,
+  //     origin: "skegness",
+  //     destination: "oslo",
+  //   },
+  //   {
+  //     id: 6,
+  //     name: "Megan",
+  //     year: 2020,
+  //     generation: 5,
+  //     origin: "oslo",
+  //     destination: "dover",
+  //   },
+  // ]);
+
+  // more than 2 peoples
+  // const [stagedData, setStagedData] = useState([
+  //   {
+  //     id: 1,
+  //     name: "fraser",
+  //     year: 1995,
+  //     generation: 10,
+  //     origin: "derby",
+  //     destination: "london",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "rowan",
+  //     year: 2000,
+  //     generation: 1,
+  //     origin: "london",
+  //     destination: "edinburgh",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "megan",
+  //     year: 2005,
+  //     generation: 3,
+  //     origin: "craven arms",
+  //     destination: "berlin",
+  //   },
+
+  // ]);
+
+  // Multiple route, multiple names, jumbled order
+
   const [stagedData, setStagedData] = useState([
-    {
-      id: 1,
-      name: "fraser",
-      year: 1995,
-      generation: 10,
-      origin: "derby",
-      destination: "london",
-    },
     {
       id: 2,
       name: "fraser",
@@ -33,39 +179,48 @@ function App() {
       origin: "london",
       destination: "edinburgh",
     },
-    // {
-    //   id: 3,
-    //   name: "fraser",
-    //   year: 2005,
-    //   generation: 10,
-    //   origin: "edinburgh",
-    //   destination: "berlin",
-    // },
-    // {
-    //   id: 4,
-    //   name: "fraser",
-    //   year: 2015,
-    //   generation: 10,
-    //   origin: "berlin",
-    //   destination: "budapest",
-    // },
+    {
+      id: 6,
+      name: "Megan",
+      year: 2020,
+      generation: 5,
+      origin: "oslo",
+      destination: "dover",
+    },
+    {
+      id: 3,
+      name: "fraser",
+      year: 2005,
+      generation: 10,
+      origin: "edinburgh",
+      destination: "berlin",
+    },
+    {
+      id: 4,
+      name: "fraser",
+      year: 2015,
+      generation: 10,
+      origin: "berlin",
+      destination: "budapest",
+    },
     {
       id: 5,
       name: "Megan",
-      year: 2000,
+      year: 2001,
       generation: 5,
       origin: "skegness",
       destination: "oslo",
     },
-    // {
-    //   id: 6,
-    //   name: "Megan",
-    //   year: 2020,
-    //   generation: 5,
-    //   origin: "oslo",
-    //   destination: "dover",
-    // },
+    {
+      id: 1,
+      name: "fraser",
+      year: 1995,
+      generation: 10,
+      origin: "derby",
+      destination: "london",
+    },
   ]);
+
   // const stagedData = useRef([]);
   const yearsRef = useRef(2030);
   const distinctYearsRef = useRef([2000, 2005]);
@@ -394,9 +549,9 @@ function App() {
             ["linear"],
             ["get", "generation"],
             0,
-            "#EE000E",
-            10,
             "#03ff03",
+            10,
+            "#EE000E",
           ],
         },
       });
@@ -413,9 +568,9 @@ function App() {
             ["linear"],
             ["get", "generation"],
             0,
-            "#EE000E",
-            10,
             "#03ff03",
+            10,
+            "#EE000E",
           ],
         },
       });
@@ -432,9 +587,9 @@ function App() {
             ["linear"],
             ["get", "generation"],
             0,
-            "#EE000E",
-            10,
             "#03ff03",
+            10,
+            "#EE000E",
           ],
         },
       });
@@ -479,7 +634,7 @@ function App() {
         features: [],
       };
       // GET UNIQUE NAMES FROM ROUTES AND CREATE ONE POINT PER ROUTE IN SAME ORDER
-// ADD GENERATION HERE TO GET  COLOUR IN POINTS
+      // ADD GENERATION HERE TO GET  COLOUR IN POINTS
       let namesList = geom.features.map((feature) => {
         return feature.properties.name;
       });
@@ -488,11 +643,11 @@ function App() {
         return feature.properties.generation;
       });
 
-let nameToGenerationLookup = {}
-for(let i = 0 ; i < namesList.length; i++) {
-  nameToGenerationLookup[namesList[i]] = generationsList[i]
-}
-console.log(nameToGenerationLookup)
+      let nameToGenerationLookup = {};
+      for (let i = 0; i < namesList.length; i++) {
+        nameToGenerationLookup[namesList[i]] = generationsList[i];
+      }
+      console.log(nameToGenerationLookup);
 
       uniqueNames.forEach((item) => {
         let pointFeatureTemplate = {
@@ -529,16 +684,27 @@ console.log(nameToGenerationLookup)
       // let nameId = geomCopy.
       let totalCycles = geomCopy.features[0].geometry.coordinates.length;
       // console.log(counter);
+
+      // THISIS DUPLICATED LOGIC
+      let namesList = geom.features.map((feature) => {
+        return feature.properties.name;
+      });
+      let uniqueNames = [...new Set(namesList)];
+
       function animate() {
         // console.log(counter)
         for (let i = 0; i < geomCopy.features.length; i++) {
+          let routeName = geomCopy.features[i].properties.name;
+          let indexOfName = uniqueNames.indexOf(routeName);
+          // console.log(geomCopy.features[i].properties.name)
+          // console.log(uniqueNames.indexOf(geomCopy.features[i].properties.name))
           // let currentRouteCounter = counterTracker[i];
           let start = geomCopy.features[i].geometry.coordinates[counter];
           // console.log(start);
           let end = geomCopy.features[i].geometry.coordinates[counter + 1];
           // console.log(points.current.features[i].properties);
           if (start) {
-            points.current.features[i].geometry.coordinates =
+            points.current.features[indexOfName].geometry.coordinates =
               geomCopy.features[i].geometry.coordinates[counter];
             // geomCopy.features[i].geometry.coordinates.push(
             //   geomCopy.features[i].geometry.coordinates[counter]
