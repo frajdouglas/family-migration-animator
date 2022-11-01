@@ -35,21 +35,21 @@ function App() {
   // different names but same start year
   const [stagedData, setStagedData] = useState([
     {
-          id: 2,
-          name: "fraser",
-          year: 2000,
-          generation: 10,
-          origin: "london",
-          destination: "edinburgh",
-        },
-        {
-          id: 5,
-          name: "Megan",
-          year: 2000,
-          generation: 5,
-          origin: "skegness",
-          destination: "oslo",
-        },
+      id: 2,
+      name: "fraser",
+      year: 2000,
+      generation: 10,
+      origin: "london",
+      destination: "edinburgh",
+    },
+    {
+      id: 5,
+      name: "Megan",
+      year: 2000,
+      generation: 5,
+      origin: "skegness",
+      destination: "oslo",
+    },
   ]);
 
   // multiple routes, single name
@@ -256,14 +256,14 @@ function App() {
     } else {
       if (stagedData.length === 0) {
         let stagedDataCopy = [...stagedData];
-stagedDataCopy.push({
-            id: 1,
-            name: name,
-            year: year,
-            generation: generation,
-            origin: origin,
-            destination: destination,
-          })
+        stagedDataCopy.push({
+          id: 1,
+          name: name,
+          year: year,
+          generation: generation,
+          origin: origin,
+          destination: destination,
+        });
         setStagedData(stagedDataCopy);
       } else {
         let stagedDataCopy = [...stagedData];
@@ -284,7 +284,7 @@ stagedDataCopy.push({
       }
     }
   };
-  console.log(stagedData);
+
   const handleDelete = (row) => {
     let idToDelete = row.id;
     let stagedDataCopy = [...stagedData];
@@ -293,27 +293,18 @@ stagedDataCopy.push({
     });
     setStagedData(newArray);
   };
+
   const handleSubmit = () => {
-    // tableDataToLineGeojson(stagedData)
-    // .then((newData) => {
-    //   console.log(newData);
-    //   setGeom(newData);
-    // });
     clearInterval(timerRef.current);
-    console.log(stagedData);
     let yearsArray = stagedData.map((item) => {
-      return item.year;
+      return Number(item.year);
     });
 
     let distinctYears = [...new Set(yearsArray)];
-    distinctYears = distinctYears.map((item) => {
-      return Number(item);
-    });
     let earliestYear = Math.min(...distinctYears);
     let latestYear = Math.max(...distinctYears);
     latestYearRef.current = Number(latestYear);
     earliestYearRef.current = Number(earliestYear);
-
     distinctYearsRef.current = distinctYears;
 
     // Sort out geometry
@@ -321,11 +312,6 @@ stagedDataCopy.push({
     // Merged Coordinates Geojson final form to return
     let reformattedRoutes = {
       type: "FeatureCollection",
-      // name: "routes",
-      // crs: {
-      //   type: "name",
-      //   properties: { name: "urn:ogc:def:crs:OGC:1.3:CRS84" },
-      // },
       features: [],
     };
     let geojsonArray = [];
@@ -388,12 +374,12 @@ stagedDataCopy.push({
           };
           geojsonArray.push(featureToPush);
         });
+
         // SEGMENT ROUTES INTO PARTS
-        let steps = 100;
+        let steps = 500;
         geojsonArray.forEach((item) => {
           const lineDistance = length(item);
           const arc = [];
-          let arcCount = 0;
           let i = 0;
           for (
             let loopCount = 0;
@@ -421,50 +407,12 @@ stagedDataCopy.push({
 
           // Sort by year
           groupedByArray.sort((a, b) => a.properties.year - b.properties.year);
-          // Merge coordinates
-          //   let mergedCoordinates = [];
-          //   let sharedProperties = {};
-          //   groupedByArray.forEach((item) => {
-          //     sharedProperties = item.properties;
-          //     let firstFeaturesCoords = item.geometry.coordinates;
-          //     mergedCoordinates = mergedCoordinates.concat(firstFeaturesCoords);
-          //   });
-          //   sharedProperties.generation = Number(sharedProperties.generation);
-          //   delete sharedProperties.origin;
-          //   delete sharedProperties.destination;
-          //   delete sharedProperties.id;
-          //   delete sharedProperties.oLat;
-          //   delete sharedProperties.dLat;
-          //   delete sharedProperties.oLong;
-          //   delete sharedProperties.dLong;
-
-          // let objectToPush = {
-          //   type: "Feature",
-          //   properties: sharedProperties,
-          //   geometry: {
-          //     type: "LineString",
-          //     coordinates: mergedCoordinates,
-          //   },
-          // };
-
-          // let objectToPush = {
-          //   type: "Feature",
-          //   properties: 'none',
-          //   geometry: {
-          //     type: "LineString",
-          //     coordinates: mergedCoordinates,
-          //   },
-          // };
-          //   reformattedRoutes.features.push(objectToPush);
+         
         });
         geojsonArray.forEach((feature) => {
           reformattedRoutes.features.push(feature);
         });
-        // console.log(reformattedRoutes);
         setGeom(reformattedRoutes);
-        // setTime(earliestYear);
-
-        // timerRef.current = setInterval(refreshTime, 1000);
       });
   };
 
@@ -599,7 +547,6 @@ stagedDataCopy.push({
   }, []);
 
   useEffect(() => {
-    console.log(geom, "GEOM");
     if (mapState) {
       // make points geojson from geom state
       let pointsNew = {
@@ -625,7 +572,6 @@ stagedDataCopy.push({
       for (let i = 0; i < namesList.length; i++) {
         nameToGenerationLookup[namesList[i]] = generationsList[i];
       }
-      console.log(nameToGenerationLookup);
 
       uniqueNames.forEach((item) => {
         let pointFeatureTemplate = {
@@ -635,11 +581,7 @@ stagedDataCopy.push({
         };
         pointsNew.features.push(pointFeatureTemplate);
       });
-      // setPoints(pointsNew);
       points.current = pointsNew;
-      // console.log(geom, "THIS SHOULD BE NEW");
-      console.log(pointsNew, "THIS SHOULD BE NEW POINTS");
-
       mapState.getSource("route").setData(geom);
       setTime(earliestYearRef.current);
     }
@@ -657,30 +599,19 @@ stagedDataCopy.push({
       geomCopy.features = geomCopy.features.filter((item) => {
         return Number(item.properties.year) === time;
       });
-      console.log(geomCopy, "GEOMCOPY");
-      // GET ID OF ROUTE WHICH IS NAME
-      // let nameId = geomCopy.
       let totalCycles = geomCopy.features[0].geometry.coordinates.length;
-      // console.log(counter);
-
-      // THISIS DUPLICATED LOGIC
+      // THIS IS DUPLICATED LOGIC
       let namesList = geom.features.map((feature) => {
         return feature.properties.name;
       });
       let uniqueNames = [...new Set(namesList)];
 
       function animate() {
-        // console.log(counter)
         for (let i = 0; i < geomCopy.features.length; i++) {
           let routeName = geomCopy.features[i].properties.name;
           let indexOfName = uniqueNames.indexOf(routeName);
-          // console.log(geomCopy.features[i].properties.name)
-          // console.log(uniqueNames.indexOf(geomCopy.features[i].properties.name))
-          // let currentRouteCounter = counterTracker[i];
           let start = geomCopy.features[i].geometry.coordinates[counter];
-          // console.log(start);
           let end = geomCopy.features[i].geometry.coordinates[counter + 1];
-          // console.log(points.current.features[i].properties);
           if (start) {
             points.current.features[indexOfName].geometry.coordinates =
               geomCopy.features[i].geometry.coordinates[counter];
@@ -694,12 +625,10 @@ stagedDataCopy.push({
 
         // Update the source with this new data
         mapState.getSource("points").setData(points.current);
-        // console.log(counter);
         if (counter < totalCycles - 1) {
           setTimeout(function () {
             let requestId = requestAnimationFrame(animate);
             requestIdArray.current.push(requestId);
-            // console.log(requestIdArray)
           }, 1000 / 100);
         } else {
           if (latestYearRef.current === time) {
@@ -713,103 +642,102 @@ stagedDataCopy.push({
       }
       animate(counter);
     }
-    console.log(latestYearRef.current);
     if (latestYearRef.current === time) {
       console.log("STOP ANIMATION");
       clearInterval(timerRef.current);
     }
   }, [time]);
 
-    return (
-      <div id="App">
-        <div id="Clock">{time}</div>;
-        <div id="toolbar">
-          <form>
-            <fieldset id="inputsContainer">
-              <label>
-                <p>Name</p>
-                <input
-                  required
-                  className="inputBox"
-                  name="name"
-                  onChange={(e) => {
-                    setName(e.target.value);
-                  }}
-                  value={name}
-                />
-              </label>
-              <label>
-                <p>Year</p>
-                <input
-                  className="inputBox"
-                  year="year"
-                  onChange={(e) => {
-                    setYear(e.target.value);
-                  }}
-                  value={year}
-                />
-              </label>
-              <label>
-                <p>Generation</p>
-                <input
-                  className="inputBox"
-                  generation="generation"
-                  onChange={(e) => {
-                    setGeneration(e.target.value);
-                  }}
-                  value={generation}
-                />
-              </label>
-              <label>
-                <p>Origin</p>
-                <input
-                  className="inputBox"
-                  origin="origin"
-                  onChange={(e) => {
-                    setOrigin(e.target.value);
-                  }}
-                  value={origin}
-                />
-              </label>
-              <label>
-                <p>Destination</p>
-                <input
-                  className="inputBox"
-                  destination="destination"
-                  onChange={(e) => {
-                    setDestination(e.target.value);
-                  }}
-                  value={destination}
-                />
-              </label>
-            </fieldset>
+  return (
+    <div id="App">
+      <div id="Clock">{time}</div>;
+      <div id="toolbar">
+        <form>
+          <fieldset id="inputsContainer">
+            <label>
+              <p>Name</p>
+              <input
+                required
+                className="inputBox"
+                name="name"
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+                value={name}
+              />
+            </label>
+            <label>
+              <p>Year</p>
+              <input
+                className="inputBox"
+                year="year"
+                onChange={(e) => {
+                  setYear(e.target.value);
+                }}
+                value={year}
+              />
+            </label>
+            <label>
+              <p>Generation</p>
+              <input
+                className="inputBox"
+                generation="generation"
+                onChange={(e) => {
+                  setGeneration(e.target.value);
+                }}
+                value={generation}
+              />
+            </label>
+            <label>
+              <p>Origin</p>
+              <input
+                className="inputBox"
+                origin="origin"
+                onChange={(e) => {
+                  setOrigin(e.target.value);
+                }}
+                value={origin}
+              />
+            </label>
+            <label>
+              <p>Destination</p>
+              <input
+                className="inputBox"
+                destination="destination"
+                onChange={(e) => {
+                  setDestination(e.target.value);
+                }}
+                value={destination}
+              />
+            </label>
+          </fieldset>
 
-            <button onClick={handleAddition}>u</button>
-          </form>
+          <button onClick={handleAddition}>u</button>
+        </form>
 
-          {stagedData.map((item,index) => {
-            return (
-              <div id="tableRow" key={`${item}${index}`}>
-                <div className="tableItem">{item.name}</div>
-                <div className="tableItem">{item.year}</div>
-                <div className="tableItem">{item.generation}</div>
-                <div className="tableItem">{item.origin}</div>
-                <div className="tableItem">{item.destination}</div>
-                <button onClick={() => handleDelete(item)}>X</button>
-              </div>
-            );
-          })}
-          <button type="submit" onClick={handleSubmit}>
-            Submit
-          </button>
-        </div>
-        <div
-          id="map"
-          ref={mapContainer}
-          style={{ width: "60%", height: "100vh" }}
-        />
+        {stagedData.map((item, index) => {
+          return (
+            <div id="tableRow" key={`${item}${index}`}>
+              <div className="tableItem">{item.name}</div>
+              <div className="tableItem">{item.year}</div>
+              <div className="tableItem">{item.generation}</div>
+              <div className="tableItem">{item.origin}</div>
+              <div className="tableItem">{item.destination}</div>
+              <button onClick={() => handleDelete(item)}>X</button>
+            </div>
+          );
+        })}
+        <button type="submit" onClick={handleSubmit}>
+          Submit
+        </button>
       </div>
-    );
-  }
+      <div
+        id="map"
+        ref={mapContainer}
+        style={{ width: "60%", height: "100vh" }}
+      />
+    </div>
+  );
+}
 
 export default App;
