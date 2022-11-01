@@ -21,7 +21,7 @@ function App() {
       id: 1,
       name: "fraser",
       year: 1995,
-      generation: 2,
+      generation: 10,
       origin: "derby",
       destination: "london",
     },
@@ -29,26 +29,42 @@ function App() {
       id: 2,
       name: "fraser",
       year: 2000,
-      generation: 2,
+      generation: 10,
       origin: "london",
       destination: "edinburgh",
     },
+    // {
+    //   id: 3,
+    //   name: "fraser",
+    //   year: 2005,
+    //   generation: 10,
+    //   origin: "edinburgh",
+    //   destination: "berlin",
+    // },
+    // {
+    //   id: 4,
+    //   name: "fraser",
+    //   year: 2015,
+    //   generation: 10,
+    //   origin: "berlin",
+    //   destination: "budapest",
+    // },
     {
-      id: 3,
-      name: "fraser",
-      year: 2005,
-      generation: 2,
-      origin: "edinburgh",
-      destination: "berlin",
+      id: 5,
+      name: "Megan",
+      year: 2000,
+      generation: 5,
+      origin: "skegness",
+      destination: "oslo",
     },
-    {
-      id: 4,
-      name: "fraser",
-      year: 2015,
-      generation: 2,
-      origin: "berlin",
-      destination: "budapest",
-    },
+    // {
+    //   id: 6,
+    //   name: "Megan",
+    //   year: 2020,
+    //   generation: 5,
+    //   origin: "oslo",
+    //   destination: "dover",
+    // },
   ]);
   // const stagedData = useRef([]);
   const yearsRef = useRef(2030);
@@ -83,7 +99,6 @@ function App() {
       // window.cancelAnimationFrame(id)
     });
   };
-
 
   const handleAddition = (e) => {
     e.preventDefault();
@@ -240,7 +255,7 @@ function App() {
           geojsonArray.push(featureToPush);
         });
         // SEGMENT ROUTES INTO PARTS
-        let steps = 1000;
+        let steps = 100;
         geojsonArray.forEach((item) => {
           const lineDistance = length(item);
           const arc = [];
@@ -273,21 +288,21 @@ function App() {
           // Sort by year
           groupedByArray.sort((a, b) => a.properties.year - b.properties.year);
           // Merge coordinates
-        //   let mergedCoordinates = [];
-        //   let sharedProperties = {};
-        //   groupedByArray.forEach((item) => {
-        //     sharedProperties = item.properties;
-        //     let firstFeaturesCoords = item.geometry.coordinates;
-        //     mergedCoordinates = mergedCoordinates.concat(firstFeaturesCoords);
-        //   });
-        //   sharedProperties.generation = Number(sharedProperties.generation);
-        //   delete sharedProperties.origin;
-        //   delete sharedProperties.destination;
-        //   delete sharedProperties.id;
-        //   delete sharedProperties.oLat;
-        //   delete sharedProperties.dLat;
-        //   delete sharedProperties.oLong;
-        //   delete sharedProperties.dLong;
+          //   let mergedCoordinates = [];
+          //   let sharedProperties = {};
+          //   groupedByArray.forEach((item) => {
+          //     sharedProperties = item.properties;
+          //     let firstFeaturesCoords = item.geometry.coordinates;
+          //     mergedCoordinates = mergedCoordinates.concat(firstFeaturesCoords);
+          //   });
+          //   sharedProperties.generation = Number(sharedProperties.generation);
+          //   delete sharedProperties.origin;
+          //   delete sharedProperties.destination;
+          //   delete sharedProperties.id;
+          //   delete sharedProperties.oLat;
+          //   delete sharedProperties.dLat;
+          //   delete sharedProperties.oLong;
+          //   delete sharedProperties.dLong;
 
           // let objectToPush = {
           //   type: "Feature",
@@ -297,7 +312,7 @@ function App() {
           //     coordinates: mergedCoordinates,
           //   },
           // };
-          
+
           // let objectToPush = {
           //   type: "Feature",
           //   properties: 'none',
@@ -306,13 +321,13 @@ function App() {
           //     coordinates: mergedCoordinates,
           //   },
           // };
-        //   reformattedRoutes.features.push(objectToPush);
+          //   reformattedRoutes.features.push(objectToPush);
         });
         geojsonArray.forEach((feature) => {
-          reformattedRoutes.features.push(feature)
-        })
+          reformattedRoutes.features.push(feature);
+        });
         // console.log(reformattedRoutes);
-        setGeom(reformattedRoutes)
+        setGeom(reformattedRoutes);
         // setTime(earliestYear);
 
         // timerRef.current = setInterval(refreshTime, 1000);
@@ -430,7 +445,15 @@ function App() {
         type: "circle",
         layout: {},
         paint: {
-          "circle-color": "red",
+          "circle-color": [
+            "interpolate",
+            ["linear"],
+            ["get", "generation"],
+            0,
+            "#EE000E",
+            10,
+            "#03ff03",
+          ],
         },
       });
       setMap(map);
@@ -455,13 +478,26 @@ function App() {
         },
         features: [],
       };
+      // GET UNIQUE NAMES FROM ROUTES AND CREATE ONE POINT PER ROUTE IN SAME ORDER
+// ADD GENERATION HERE TO GET  COLOUR IN POINTS
+      let namesList = geom.features.map((feature) => {
+        return feature.properties.name;
+      });
+      let uniqueNames = [...new Set(namesList)];
+      let generationsList = geom.features.map((feature) => {
+        return feature.properties.generation;
+      });
 
-      geom.features.forEach((item) => {
-        // console.log(item);
-        // let personName = item.properties.name;
+let nameToGenerationLookup = {}
+for(let i = 0 ; i < namesList.length; i++) {
+  nameToGenerationLookup[namesList[i]] = generationsList[i]
+}
+console.log(nameToGenerationLookup)
+
+      uniqueNames.forEach((item) => {
         let pointFeatureTemplate = {
           type: "Feature",
-          properties: { id: 1 },
+          properties: { name: item, generation: nameToGenerationLookup[item] },
           geometry: { type: "Point", coordinates: [0, 0] },
         };
         pointsNew.features.push(pointFeatureTemplate);
@@ -469,7 +505,7 @@ function App() {
       // setPoints(pointsNew);
       points.current = pointsNew;
       // console.log(geom, "THIS SHOULD BE NEW");
-      // console.log(pointsNew, "THIS SHOULD BE NEW POINTS");
+      console.log(pointsNew, "THIS SHOULD BE NEW POINTS");
 
       mapState.getSource("route").setData(geom);
       setTime(earliestYearRef.current);
@@ -478,34 +514,21 @@ function App() {
 
   useEffect(() => {
     // console.log(geom,"GEOM IN TIME USEEFFECT")
-    console.log(distinctYearsRef.current, time);
+
     if (distinctYearsRef.current.includes(time)) {
+      console.log(distinctYearsRef.current, time);
+
       let counter = 0;
       clearInterval(timerRef.current);
-      // Filter geom to just get the right years
-      // // console.log(geom, "GEOM IN TIME USEEFFECT");
-      // // let featuresToPlot = geom.features;
-      // // // let geomCopy = Object.assign({}, geom);
-      // // console.log(featuresToPlot);
-
-      // // featuresToPlot = featuresToPlot.filter((item) => {
-      // //   console.log(item.properties.year);
-
-      // //   return Number(item.properties.year) === time;
-      // // });
-      // console.log(featuresToPlot);
-      // let coordinatesToFollow = featuresToPlot.map((item) => {
-      //   return item.geometry.coordinates;
-      // });
-      // console.log(coordinatesToFollow);
       let geomCopy = { ...geom };
       geomCopy.features = geomCopy.features.filter((item) => {
         return Number(item.properties.year) === time;
       });
-      console.log(geomCopy);
-      
+      console.log(geomCopy, "GEOMCOPY");
+      // GET ID OF ROUTE WHICH IS NAME
+      // let nameId = geomCopy.
       let totalCycles = geomCopy.features[0].geometry.coordinates.length;
-      console.log(counter);
+      // console.log(counter);
       function animate() {
         // console.log(counter)
         for (let i = 0; i < geomCopy.features.length; i++) {
@@ -513,14 +536,14 @@ function App() {
           let start = geomCopy.features[i].geometry.coordinates[counter];
           // console.log(start);
           let end = geomCopy.features[i].geometry.coordinates[counter + 1];
-          console.log(end);
+          // console.log(points.current.features[i].properties);
           if (start) {
             points.current.features[i].geometry.coordinates =
               geomCopy.features[i].geometry.coordinates[counter];
-            geomCopy.features[i].geometry.coordinates.push(
-              geomCopy.features[i].geometry.coordinates[counter]
-            );
-            console.log(points.current);
+            // geomCopy.features[i].geometry.coordinates.push(
+            //   geomCopy.features[i].geometry.coordinates[counter]
+            // );
+            // console.log(points.current);
             // counterTracker[i]++;
           }
         }
@@ -528,7 +551,7 @@ function App() {
         // Update the source with this new data
         mapState.getSource("points").setData(points.current);
         // console.log(counter);
-        if (counter < totalCycles) {
+        if (counter < totalCycles - 1) {
           setTimeout(function () {
             let requestId = requestAnimationFrame(animate);
             requestIdArray.current.push(requestId);
