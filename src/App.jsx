@@ -27,30 +27,30 @@ function App() {
   //     name: "fraser",
   //     year: 1995,
   //     generation: 10,
-  //     origin: "derby",
+  //     origin: "Derby",
   //     destination: "london",
   //   }
   // ]);
 
   // different names but same start year
-  const [stagedData, setStagedData] = useState([
-    {
-      id: 2,
-      name: "fraser",
-      year: 2000,
-      generation: 10,
-      origin: "london",
-      destination: "edinburgh",
-    },
-    {
-      id: 5,
-      name: "Megan",
-      year: 2000,
-      generation: 5,
-      origin: "skegness",
-      destination: "oslo",
-    },
-  ]);
+  // const [stagedData, setStagedData] = useState([
+  //   {
+  //     id: 2,
+  //     name: "fraser",
+  //     year: 2000,
+  //     generation: 10,
+  //     origin: "london",
+  //     destination: "edinburgh",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Megan",
+  //     year: 2000,
+  //     generation: 5,
+  //     origin: "skegness",
+  //     destination: "oslo",
+  //   },
+  // ]);
 
   // multiple routes, single name
   // const [stagedData, setStagedData] = useState([
@@ -59,7 +59,7 @@ function App() {
   //     name: "fraser",
   //     year: 1995,
   //     generation: 10,
-  //     origin: "derby",
+  //     origin: "Derby",
   //     destination: "london",
   //   },
   //   {
@@ -95,7 +95,7 @@ function App() {
   //     name: "fraser",
   //     year: 1995,
   //     generation: 10,
-  //     origin: "derby",
+  //     origin: "Derby",
   //     destination: "london",
   //   },
   //   {
@@ -147,7 +147,7 @@ function App() {
   //     name: "fraser",
   //     year: 1995,
   //     generation: 10,
-  //     origin: "derby",
+  //     origin: "Derby",
   //     destination: "london",
   //   },
   //   {
@@ -217,7 +217,7 @@ function App() {
   //     name: "fraser",
   //     year: 1995,
   //     generation: 10,
-  //     origin: "derby",
+  //     origin: "Derby",
   //     destination: "london",
   //   },
   // ]);
@@ -225,6 +225,388 @@ function App() {
   // const [stagedData, setStagedData] = useState([]);
 
   // Reference for years data
+
+  // DOUGLAS WOLSTENHOLME FAMILY TREE
+
+  const [stagedData, setStagedData] = useState([
+    {
+      id: 1,
+      name: "George Eddleston",
+      year: 1915,
+      generation: 1,
+      origin: "Sheffield",
+      destination: "Iraq",
+    },
+    {
+      id: 2,
+      name: "George Eddleston",
+      year: 1918,
+      generation: 1,
+      origin: "Iraq",
+      destination: "Sheffield",
+    },
+    {
+      id: 3,
+      name: "William Wolstenholme",
+      year: 1915,
+      generation: 1,
+      origin: "Sheffield",
+      destination: "Barrow In Furness",
+    },
+    {
+      id: 4,
+      name: "William Wolstenholme",
+      year: 1918,
+      generation: 1,
+      origin: "Barrow In Furness",
+      destination: "Sheffield",
+    },
+    {
+      id: 5,
+      name: "Mystery Dance",
+      year: 1925,
+      generation: 1,
+      origin: "London",
+      destination: "Bangalore",
+    },
+    {
+      id: 6,
+      name: "Mystery Dance",
+      year: 1936,
+      generation: 1,
+      origin: "Bangalore",
+      destination: "Sale cheshire",
+    },
+    {
+      id: 7,
+      name: "Edward Dance",
+      year: 1920,
+      generation: 1,
+      origin: "Wakefield",
+      destination: "Leeds",
+    },
+    {
+      id: 8,
+      name: "Edward Dance",
+      year: 1923,
+      generation: 1,
+      origin: "Leeds",
+      destination: "Bangalore",
+    },
+    {
+      id: 9,
+      name: "Edward Dance",
+      year: 1936,
+      generation: 1,
+      origin: "Bangalore",
+      destination: "Sale cheshire",
+    },
+    {
+      id: 10,
+      name: "Edward Dance",
+      year: 1936,
+      generation: 1,
+      origin: "Sale cheshire",
+      destination: "Horbury yorkshire",
+    },
+    {
+      id: 11,
+      name: "John Douglas",
+      year: 1914,
+      generation: 1,
+      origin: "Bolton",
+      destination: "Barrow In Furness",
+    },
+    {
+      id: 12,
+      name: "John Douglas",
+      year: 1957,
+      generation: 1,
+      origin: "Barrow In Furness",
+      destination: "Stockport",
+    },
+    {
+      id: 13,
+      name: "Kathleen Wolstenholme",
+      year: 1942,
+      generation: 2,
+      origin: "Sheffield",
+      destination: "Nottingham",
+    },
+    {
+      id: 14,
+      name: "Kathleen Wolstenholme",
+      year: 1957,
+      generation: 2,
+      origin: "Nottingham",
+      destination: "Sheffield",
+    },
+    {
+      id: 15,
+      name: "Eric Wolstenholme",
+      year: 1942,
+      generation: 2,
+      origin: "Sheffield",
+      destination: "Devon",
+    },
+    {
+      id: 16,
+      name: "Eric Wolstenholme",
+      year: 1945,
+      generation: 2,
+      origin: "Sheffield",
+      destination: "Greece",
+    },
+    {
+      id: 17,
+      name: "Eric Wolstenholme",
+      year: 1946,
+      generation: 2,
+      origin: "Greece",
+      destination: "Sheffield",
+    },
+    {
+      id: 18,
+      name: "Christina Douglas",
+      year: 1936,
+      generation: 2,
+      origin: "Bangalore",
+      destination: "Sale Cheshire",
+    },
+    {
+      id: 19,
+      name: "Christina Douglas",
+      year: 1954,
+      generation: 2,
+      origin: "Sale Cheshire",
+      destination: "Manchester",
+    },
+    {
+      id: 20,
+      name: "Christina Douglas",
+      year: 1957,
+      generation: 2,
+      origin: "Manchester",
+      destination: "Stockport",
+    },
+    {
+      id: 21,
+      name: "Joseph Douglas",
+      year: 1945,
+      generation: 2,
+      origin: "Barrow In Furness",
+      destination: "Singapore",
+    },
+    {
+      id: 22,
+      name: "Joseph Douglas",
+      year: 1947,
+      generation: 2,
+      origin: "Singapore",
+      destination: "Manchester",
+    },
+    {
+      id: 23,
+      name: "Joseph Douglas",
+      year: 1957,
+      generation: 2,
+      origin: "Manchester",
+      destination: "Stockport",
+    },
+    {
+      id: 24,
+      name: "Alison Douglas",
+      year: 1976,
+      generation: 3,
+      origin: "Sheffield",
+      destination: "Leicester",
+    },
+    {
+      id: 25,
+      name: "Alison Douglas",
+      year: 1980,
+      generation: 3,
+      origin: "Leicester",
+      destination: "Sheffield",
+    },
+    {
+      id: 26,
+      name: "Alison Douglas",
+      year: 1981,
+      generation: 3,
+      origin: "Sheffield",
+      destination: "Derby",
+    },
+    {
+      id: 27,
+      name: "Jeremy Douglas",
+      year: 1957,
+      generation: 3,
+      origin: "Manchester",
+      destination: "Stockport",
+    },
+    {
+      id: 28,
+      name: "Jeremy Douglas",
+      year: 1972,
+      generation: 3,
+      origin: "Stockport",
+      destination: "Liverpool",
+    },
+    {
+      id: 29,
+      name: "Jeremy Douglas",
+      year: 1976,
+      generation: 3,
+      origin: "Stockport",
+      destination: "Leicester",
+    },
+    {
+      id: 30,
+      name: "Jeremy Douglas",
+      year: 1979,
+      generation: 3,
+      origin: "Leicester",
+      destination: "Thurso",
+    },
+    {
+      id: 31,
+      name: "Jeremy Douglas",
+      year: 1981,
+      generation: 3,
+      origin: "Thurso",
+      destination: "Derby",
+    },
+    {
+      id: 32,
+      name: "Fraser Douglas",
+      year: 2013,
+      generation: 4,
+      origin: "Derby",
+      destination: "Liverpool",
+    },
+    {
+      id: 33,
+      name: "Fraser Douglas",
+      year: 2017,
+      generation: 4,
+      origin: "Liverpool",
+      destination: "Derby",
+    },
+    {
+      id: 34,
+      name: "Fraser Douglas",
+      year: 2018,
+      generation: 4,
+      origin: "Derby",
+      destination: "Liverpool",
+    },
+    {
+      id: 35,
+      name: "Fraser Douglas",
+      year: 2019,
+      generation: 4,
+      origin: "Liverpool",
+      destination: "Derby",
+    },
+    {
+      id: 36,
+      name: "Fraser Douglas",
+      year: 2021,
+      generation: 4,
+      origin: "Derby",
+      destination: "Manchester",
+    },
+    {
+      id: 37,
+      name: "Rowan Douglas",
+      year: 2010,
+      generation: 4,
+      origin: "Derby",
+      destination: "Coventry",
+    },
+    {
+      id: 38,
+      name: "Rowan Douglas",
+      year: 2011,
+      generation: 4,
+      origin: "Coventry",
+      destination: "Lemington Spa",
+    },
+    {
+      id: 39,
+      name: "Rowan Douglas",
+      year: 2013,
+      generation: 4,
+      origin: "Lemington Spa",
+      destination: "Coventry",
+    },
+    {
+      id: 40,
+      name: "Rowan Douglas",
+      year: 2014,
+      generation: 4,
+      origin: "Coventry",
+      destination: "London",
+    },
+    {
+      id: 41,
+      name: "Rowan Douglas",
+      year: 2019,
+      generation: 4,
+      origin: "London",
+      destination: "Whistler Canada",
+    },
+    {
+      id: 42,
+      name: "Rowan Douglas",
+      year: 2020,
+      generation: 4,
+      origin: "Whistler Canada",
+      destination: "Brazil",
+    },
+    {
+      id: 43,
+      name: "Rowan Douglas",
+      year: 2021,
+      generation: 4,
+      origin: "Brazil",
+      destination: "London",
+    },
+    {
+      id: 44,
+      name: "Rebecca Douglas",
+      year: 2008,
+      generation: 4,
+      origin: "Derby",
+      destination: "Kingston Upon Thames",
+    },
+    {
+      id: 45,
+      name: "Rebecca Douglas",
+      year: 2009,
+      generation: 4,
+      origin: "Kingston Upon Thames",
+      destination: "Derby",
+    },
+    {
+      id: 46,
+      name: "Rebecca Douglas",
+      year: 2012,
+      generation: 4,
+      origin: "Derby",
+      destination: "Birmingham",
+    },
+    {
+      id: 47,
+      name: "Rebecca Douglas",
+      year: 2015,
+      generation: 4,
+      origin: "Birmingham",
+      destination: "Reading",
+    },
+  ]);
+
   const latestYearRef = useRef(2030);
   const distinctYearsRef = useRef([2000, 2005]);
   const earliestYearRef = useRef(2000);
@@ -332,6 +714,8 @@ function App() {
     let originsAndDestinationsDistinctArray = [
       ...new Set(originsAndDestinationsArray),
     ];
+    console.log(originsAndDestinationsDistinctArray)
+//BACKUP!!!!
     let fetchCalls = originsAndDestinationsDistinctArray.map((query) => {
       return fetch(
         `https://nominatim.openstreetmap.org/search?format=json&q=${query}`
@@ -407,7 +791,6 @@ function App() {
 
           // Sort by year
           groupedByArray.sort((a, b) => a.properties.year - b.properties.year);
-         
         });
         geojsonArray.forEach((feature) => {
           reformattedRoutes.features.push(feature);
@@ -527,7 +910,7 @@ function App() {
         type: "circle",
         layout: {},
         paint: {
-          "circle-radius" : 10,
+          "circle-radius": 10,
           "circle-color": [
             "interpolate",
             ["linear"],
@@ -651,9 +1034,10 @@ function App() {
 
   return (
     <div id="App">
-      <div id="Clock">{time}</div>;
+      <div id="Clock">{time}</div>
       <div id="toolbar">
-        <form>
+        <div id="title">Family Tree Animator</div>
+        <form id="form">
           <fieldset id="inputsContainer">
             <label>
               <p>Name</p>
@@ -712,10 +1096,11 @@ function App() {
               />
             </label>
           </fieldset>
-
-          <button onClick={handleAddition}>u</button>
         </form>
 
+        <button onClick={handleAddition} id="addButton">
+          Add
+        </button>
         {stagedData.map((item, index) => {
           return (
             <div id="tableRow" key={`${item}${index}`}>
@@ -728,15 +1113,11 @@ function App() {
             </div>
           );
         })}
-        <button type="submit" onClick={handleSubmit}>
-          Submit
+        <button type="submit" onClick={handleSubmit} id="submitButton">
+          Start Animation
         </button>
       </div>
-      <div
-        id="map"
-        ref={mapContainer}
-        style={{ width: "60%", height: "100vh" }}
-      />
+      <div id="map" ref={mapContainer} />
     </div>
   );
 }

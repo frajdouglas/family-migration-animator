@@ -1,7 +1,7 @@
 .App {
   box-sizing: border-box;
-  /* display: flex;
-  flex-direction: column; */
+  margin: 0;
+  padding: 0;
 }
 
 #Clock{
@@ -9,54 +9,73 @@
   right: 1vw;
   top: 1vh;
   z-index: 10;
-  border: 5px solid blue;
-
+  border: 5px solid black;
+  border-radius: 10px;
+font-size: 70px;
+background-color: white;
 }
 
 #map {
   position: absolute;
-  left: 40vw;
+  left: 30%;
   top: 0vh;
-  width: 60vw;
-  height: 100vh;
-  border: 5px solid pink;
-  box-sizing: border-box;
+  width: 70%;
+  height: 100%;
+  /* border: 5px solid pink; */
+  /* box-sizing: border-box; */
 }
 
 #toolbar {
-  width: 40vw;
-  height: 100vh;
-  border: 5px solid blue;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  height: 100%;
+  border: 1px solid blue;
   box-sizing: border-box;
 }
 
 #tableRow {
   display: flex;
   flex-direction: row;
-  width: 40vw;
+  width: 30vw;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
+  padding: 5px;
 }
 
 .tableItem {
   border: 1px solid black;
+  gap:1px;
   width: 8vw;
   height: 3vh;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+
+}
+
+#form{
+  /* border: 1px solid green; */
+
+}
+
+#title{
+  font-size: 50px;
+  padding: 5px;
 }
 
 #inputsContainer {
   display: flex;
   flex-direction: row;
-  /* gap : 3vw; */
-  width: 40vw;
+  width: 100%;
   box-sizing: border-box;
 }
 
 .inputBox {
-  width: 7vw;
+  width: 5vw;
   /* border: 5px solid blue; */
-
+  box-sizing: border-box;
 }
+
