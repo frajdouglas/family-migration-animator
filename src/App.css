@@ -30,34 +30,39 @@ background-color: white;
   flex-direction: column;
   width: 30%;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  height: 100%;
+  height: 100vh;
   border: 1px solid blue;
   box-sizing: border-box;
+
 }
 
 #tableRow {
   display: flex;
   flex-direction: row;
-  width: 30vw;
+  width: 100%;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
   padding: 5px;
+  box-sizing: border-box;
+
 }
 
 .tableItem {
   border: 1px solid black;
   gap:1px;
   width: 8vw;
-  height: 3vh;
+  min-height: 5vh;
+  font-size: 13px;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
 
 }
 
-#form{
-  /* border: 1px solid green; */
+#dataContainer{
+  border: 1px solid green;
+  overflow: auto;
 
 }
 

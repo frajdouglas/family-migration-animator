@@ -3,10 +3,7 @@ import React from "react";
 import { useState, useRef, useEffect } from "react";
 import { along, length } from "@turf/turf";
 import { exampleGeojson, point } from "./exampleGeojson";
-import mapboxgl from "mapbox-gl";
-
-mapboxgl.accessToken =
-  "pk.eyJ1IjoiZnJhamRvdWdsYXMiLCJhIjoiY2w4bGNxd3Z5MGRmdTN3c2Q1ZWF3aGRteSJ9.psCe4vsJM0PBLM6CBsIJDw";
+import maplibreGl from "maplibre-gl";
 
 function App() {
   // State and reference for timer
@@ -469,7 +466,7 @@ function App() {
       name: "Jeremy Douglas",
       year: 1979,
       generation: 3,
-      origin: "Leicester UK",
+      origin: "Leicester UK" ,
       destination: "Thurso UK",
     },
     {
@@ -780,7 +777,7 @@ function App() {
       });
 
       // SEGMENT ROUTES INTO PARTS
-      let steps = 150;
+      let steps = 500;
       geojsonArray.forEach((item) => {
         const lineDistance = length(item);
         const arc = [];
@@ -969,10 +966,31 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const style = {
+      version: 8,
+      sources: {
+        osm: {
+          type: "raster",
+          tiles: ["https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"],
+          tileSize: 256,
+          attribution: "&copy; OpenStreetMap Contributors",
+          maxzoom: 19,
+        },
+      },
+      layers: [
+        {
+          id: "osm",
+          type: "raster",
+          source: "osm", // This must match the source key above
+        },
+      ],
+      // glyphs: "https://fonts.openmaptiles.org/{fontstack}/{range}.pbf"
+    };
+
     // Initialise the map
-    const map = new mapboxgl.Map({
+    const map = new maplibreGl.Map({
       container: "map",
-      style: "mapbox://styles/mapbox/dark-v10",
+      style: style,
       center: [-2.24, 54.48],
       zoom: 7,
     });
@@ -1053,26 +1071,22 @@ function App() {
             "#D35FB7",
           ],
         },
-        filter: ["!=", "visibleToggle", 0],
       });
       map.addLayer({
         id: "pointsLabels",
         source: "points",
         type: "symbol",
         layout: {
-          "text-field": ["get", "name"],
+          "text-field" :"something",
+          // "text-field": ["get", "name"],
           "text-variable-anchor": ["top", "bottom", "left", "right"],
           "text-radial-offset": 0.5,
           "text-justify": "auto",
-          "icon-image": ["get", "icon"],
-          "text-size": 20,
+          // "icon-image": ["get", "icon"],
         },
         paint: {
-          "text-color": "#FFFFFF",
-          "text-halo-color": "#000000",
-          "text-halo-width": 1,
+          "text-color": "#00dec6",
         },
-        filter: ["!=", "visibleToggle", 0],
       });
       setMap(map);
     });
@@ -1146,9 +1160,6 @@ function App() {
         for (let i = 0; i < geomCopy.features.length; i++) {
           let routeName = geomCopy.features[i].properties.name;
           let indexOfName = uniqueNames.indexOf(routeName);
-          // Turn the labels and point visilbity back on
-          points.current.features[indexOfName].properties.visibleToggle = 1;
-
           let start = geomCopy.features[i].geometry.coordinates[counter];
           let end = geomCopy.features[i].geometry.coordinates[counter + 1];
           if (start) {
@@ -1159,15 +1170,6 @@ function App() {
             // );
             // console.log(points.current);
             // counterTracker[i]++;
-          }
-
-          if (end === undefined) {
-            console.log(
-              "REMOVE THE POINT AND LABEL",
-              points.current.features[indexOfName]
-            );
-            // ADD CUSTOM TOGGLE IN DATA
-            points.current.features[indexOfName].properties.visibleToggle = 0;
           }
         }
 

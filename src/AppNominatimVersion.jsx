@@ -3,10 +3,7 @@ import React from "react";
 import { useState, useRef, useEffect } from "react";
 import { along, length } from "@turf/turf";
 import { exampleGeojson, point } from "./exampleGeojson";
-import mapboxgl from "mapbox-gl";
-
-mapboxgl.accessToken =
-  "pk.eyJ1IjoiZnJhamRvdWdsYXMiLCJhIjoiY2w4bGNxd3Z5MGRmdTN3c2Q1ZWF3aGRteSJ9.psCe4vsJM0PBLM6CBsIJDw";
+import maplibreGl from "maplibre-gl";
 
 function App() {
   // State and reference for timer
@@ -56,40 +53,40 @@ function App() {
   // ]);
 
   // multiple routes, single name
-  // const [stagedData, setStagedData] = useState([
-  //   {
-  //     id: 1,
-  //     name: "fraser",
-  //     year: 1995,
-  //     generation: 10,
-  //     origin: "Derby",
-  //     destination: "london",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "fraser",
-  //     year: 2000,
-  //     generation: 10,
-  //     origin: "london",
-  //     destination: "edinburgh",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "fraser",
-  //     year: 2005,
-  //     generation: 10,
-  //     origin: "edinburgh",
-  //     destination: "berlin",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "fraser",
-  //     year: 2015,
-  //     generation: 10,
-  //     origin: "berlin",
-  //     destination: "budapest",
-  //   },
-  // ]);
+  const [stagedData, setStagedData] = useState([
+    {
+      id: 1,
+      name: "fraser",
+      year: 1995,
+      generation: 10,
+      origin: "Derby",
+      destination: "london",
+    },
+    {
+      id: 2,
+      name: "fraser",
+      year: 2000,
+      generation: 10,
+      origin: "london",
+      destination: "edinburgh",
+    },
+    {
+      id: 3,
+      name: "fraser",
+      year: 2005,
+      generation: 10,
+      origin: "edinburgh",
+      destination: "berlin",
+    },
+    {
+      id: 4,
+      name: "fraser",
+      year: 2015,
+      generation: 10,
+      origin: "berlin",
+      destination: "budapest",
+    },
+  ]);
 
   // multiple routes, multiple names
   // const [stagedData, setStagedData] = useState([
@@ -231,384 +228,384 @@ function App() {
 
   // DOUGLAS WOLSTENHOLME FAMILY TREE
 
-  const [stagedData, setStagedData] = useState([
-    {
-      id: 1,
-      name: "George Eddleston",
-      year: 1915,
-      generation: 1,
-      origin: "Sheffield UK",
-      destination: "Iraq",
-    },
-    {
-      id: 2,
-      name: "George Eddleston",
-      year: 1918,
-      generation: 1,
-      origin: "Iraq",
-      destination: "Sheffield UK",
-    },
-    {
-      id: 3,
-      name: "William Wolstenholme",
-      year: 1915,
-      generation: 1,
-      origin: "Sheffield UK",
-      destination: "Barrow In Furness UK",
-    },
-    {
-      id: 4,
-      name: "William Wolstenholme",
-      year: 1918,
-      generation: 1,
-      origin: "Barrow In Furness UK",
-      destination: "Sheffield UK",
-    },
-    {
-      id: 5,
-      name: "Mystery Dance",
-      year: 1925,
-      generation: 1,
-      origin: "London UK",
-      destination: "Bangalore",
-    },
-    {
-      id: 6,
-      name: "Mystery Dance",
-      year: 1936,
-      generation: 1,
-      origin: "Bangalore",
-      destination: "Sale cheshire UK",
-    },
-    {
-      id: 7,
-      name: "Edward Dance",
-      year: 1920,
-      generation: 1,
-      origin: "Wakefield UK",
-      destination: "Leeds UK",
-    },
-    {
-      id: 8,
-      name: "Edward Dance",
-      year: 1923,
-      generation: 1,
-      origin: "Leeds UK",
-      destination: "Bangalore",
-    },
-    {
-      id: 9,
-      name: "Edward Dance",
-      year: 1936,
-      generation: 1,
-      origin: "Bangalore",
-      destination: "Sale cheshire UK",
-    },
-    {
-      id: 10,
-      name: "Edward Dance",
-      year: 1936,
-      generation: 1,
-      origin: "Sale cheshire UK",
-      destination: "Horbury yorkshire UK",
-    },
-    {
-      id: 11,
-      name: "John Douglas",
-      year: 1914,
-      generation: 1,
-      origin: "Bolton UK",
-      destination: "Barrow In Furness UK",
-    },
-    {
-      id: 12,
-      name: "John Douglas",
-      year: 1957,
-      generation: 1,
-      origin: "Barrow In Furness UK",
-      destination: "Stockport UK",
-    },
-    {
-      id: 13,
-      name: "Kathleen Wolstenholme",
-      year: 1942,
-      generation: 2,
-      origin: "Sheffield UK",
-      destination: "Nottingham UK",
-    },
-    {
-      id: 14,
-      name: "Kathleen Wolstenholme",
-      year: 1957,
-      generation: 2,
-      origin: "Nottingham UK",
-      destination: "Sheffield UK",
-    },
-    {
-      id: 15,
-      name: "Eric Wolstenholme",
-      year: 1942,
-      generation: 2,
-      origin: "Sheffield UK",
-      destination: "Devon UK",
-    },
-    {
-      id: 16,
-      name: "Eric Wolstenholme",
-      year: 1945,
-      generation: 2,
-      origin: "Sheffield UK",
-      destination: "Greece",
-    },
-    {
-      id: 17,
-      name: "Eric Wolstenholme",
-      year: 1946,
-      generation: 2,
-      origin: "Greece",
-      destination: "Sheffield UK",
-    },
-    {
-      id: 18,
-      name: "Christina Douglas",
-      year: 1936,
-      generation: 2,
-      origin: "Bangalore",
-      destination: "Sale Cheshire UK",
-    },
-    {
-      id: 19,
-      name: "Christina Douglas",
-      year: 1954,
-      generation: 2,
-      origin: "Sale Cheshire UK",
-      destination: "Manchester UK",
-    },
-    {
-      id: 20,
-      name: "Christina Douglas",
-      year: 1957,
-      generation: 2,
-      origin: "Manchester UK",
-      destination: "Stockport UK",
-    },
-    {
-      id: 21,
-      name: "Joseph Douglas",
-      year: 1945,
-      generation: 2,
-      origin: "Barrow In Furness UK",
-      destination: "Singapore",
-    },
-    {
-      id: 22,
-      name: "Joseph Douglas",
-      year: 1947,
-      generation: 2,
-      origin: "Singapore",
-      destination: "Manchester UK",
-    },
-    {
-      id: 23,
-      name: "Joseph Douglas",
-      year: 1957,
-      generation: 2,
-      origin: "Manchester UK",
-      destination: "Stockport UK",
-    },
-    {
-      id: 24,
-      name: "Alison Douglas",
-      year: 1976,
-      generation: 3,
-      origin: "Sheffield UK",
-      destination: "Leicester UK",
-    },
-    {
-      id: 25,
-      name: "Alison Douglas",
-      year: 1980,
-      generation: 3,
-      origin: "Leicester UK",
-      destination: "Sheffield UK",
-    },
-    {
-      id: 26,
-      name: "Alison Douglas",
-      year: 1981,
-      generation: 3,
-      origin: "Sheffield UK",
-      destination: "Derby UK",
-    },
-    {
-      id: 27,
-      name: "Jeremy Douglas",
-      year: 1957,
-      generation: 3,
-      origin: "Manchester UK",
-      destination: "Stockport UK",
-    },
-    {
-      id: 28,
-      name: "Jeremy Douglas",
-      year: 1972,
-      generation: 3,
-      origin: "Stockport UK",
-      destination: "Liverpool+UK",
-    },
-    {
-      id: 29,
-      name: "Jeremy Douglas",
-      year: 1976,
-      generation: 3,
-      origin: "Stockport UK",
-      destination: "Leicester UK",
-    },
-    {
-      id: 30,
-      name: "Jeremy Douglas",
-      year: 1979,
-      generation: 3,
-      origin: "Leicester UK",
-      destination: "Thurso UK",
-    },
-    {
-      id: 31,
-      name: "Jeremy Douglas",
-      year: 1981,
-      generation: 3,
-      origin: "Thurso UK",
-      destination: "Derby UK",
-    },
-    {
-      id: 32,
-      name: "Fraser Douglas",
-      year: 2013,
-      generation: 4,
-      origin: "Derby",
-      destination: "Liverpool+UK",
-    },
-    {
-      id: 33,
-      name: "Fraser Douglas",
-      year: 2017,
-      generation: 4,
-      origin: "Liverpool+UK",
-      destination: "Derby UK",
-    },
-    {
-      id: 34,
-      name: "Fraser Douglas",
-      year: 2018,
-      generation: 4,
-      origin: "Derby UK",
-      destination: "Liverpool+UK",
-    },
-    {
-      id: 35,
-      name: "Fraser Douglas",
-      year: 2019,
-      generation: 4,
-      origin: "Liverpool+UK",
-      destination: "Derby UK",
-    },
-    {
-      id: 36,
-      name: "Fraser Douglas",
-      year: 2021,
-      generation: 4,
-      origin: "Derby UK",
-      destination: "Manchester UK",
-    },
-    {
-      id: 37,
-      name: "Rowan Douglas",
-      year: 2010,
-      generation: 4,
-      origin: "Derby UK",
-      destination: "Coventry UK",
-    },
-    {
-      id: 38,
-      name: "Rowan Douglas",
-      year: 2011,
-      generation: 4,
-      origin: "Coventry UK",
-      destination: "Lemington Spa UK",
-    },
-    {
-      id: 39,
-      name: "Rowan Douglas",
-      year: 2013,
-      generation: 4,
-      origin: "Lemington Spa UK",
-      destination: "Coventry UK",
-    },
-    {
-      id: 40,
-      name: "Rowan Douglas",
-      year: 2014,
-      generation: 4,
-      origin: "Coventry UK",
-      destination: "London UK",
-    },
-    {
-      id: 41,
-      name: "Rowan Douglas",
-      year: 2019,
-      generation: 4,
-      origin: "London UK",
-      destination: "Whistler Canada",
-    },
-    {
-      id: 42,
-      name: "Rowan Douglas",
-      year: 2020,
-      generation: 4,
-      origin: "Whistler Canada",
-      destination: "Brazil UK",
-    },
-    {
-      id: 43,
-      name: "Rowan Douglas",
-      year: 2021,
-      generation: 4,
-      origin: "Brazil UK",
-      destination: "London UK",
-    },
-    {
-      id: 44,
-      name: "Rebecca Douglas",
-      year: 2008,
-      generation: 4,
-      origin: "Derby UK",
-      destination: "Kingston Upon Thames UK",
-    },
-    {
-      id: 45,
-      name: "Rebecca Douglas",
-      year: 2009,
-      generation: 4,
-      origin: "Kingston Upon Thames UK",
-      destination: "Derby UK",
-    },
-    {
-      id: 46,
-      name: "Rebecca Douglas",
-      year: 2012,
-      generation: 4,
-      origin: "Derby UK",
-      destination: "Birmingham UK",
-    },
-    {
-      id: 47,
-      name: "Rebecca Douglas",
-      year: 2015,
-      generation: 4,
-      origin: "Birmingham UK",
-      destination: "Reading UK",
-    },
-  ]);
+  // const [stagedData, setStagedData] = useState([
+  //   {
+  //     id: 1,
+  //     name: "George Eddleston",
+  //     year: 1915,
+  //     generation: 1,
+  //     origin: "Sheffield",
+  //     destination: "Iraq",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "George Eddleston",
+  //     year: 1918,
+  //     generation: 1,
+  //     origin: "Iraq",
+  //     destination: "Sheffield",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "William Wolstenholme",
+  //     year: 1915,
+  //     generation: 1,
+  //     origin: "Sheffield",
+  //     destination: "Barrow In Furness",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "William Wolstenholme",
+  //     year: 1918,
+  //     generation: 1,
+  //     origin: "Barrow In Furness",
+  //     destination: "Sheffield",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Mystery Dance",
+  //     year: 1925,
+  //     generation: 1,
+  //     origin: "London",
+  //     destination: "Bangalore",
+  //   },
+  //   {
+  //     id: 6,
+  //     name: "Mystery Dance",
+  //     year: 1936,
+  //     generation: 1,
+  //     origin: "Bangalore",
+  //     destination: "Sale cheshire",
+  //   },
+  //   {
+  //     id: 7,
+  //     name: "Edward Dance",
+  //     year: 1920,
+  //     generation: 1,
+  //     origin: "Wakefield",
+  //     destination: "Leeds",
+  //   },
+  //   {
+  //     id: 8,
+  //     name: "Edward Dance",
+  //     year: 1923,
+  //     generation: 1,
+  //     origin: "Leeds",
+  //     destination: "Bangalore",
+  //   },
+  //   {
+  //     id: 9,
+  //     name: "Edward Dance",
+  //     year: 1936,
+  //     generation: 1,
+  //     origin: "Bangalore",
+  //     destination: "Sale cheshire",
+  //   },
+  //   {
+  //     id: 10,
+  //     name: "Edward Dance",
+  //     year: 1936,
+  //     generation: 1,
+  //     origin: "Sale cheshire",
+  //     destination: "Horbury yorkshire",
+  //   },
+  //   {
+  //     id: 11,
+  //     name: "John Douglas",
+  //     year: 1914,
+  //     generation: 1,
+  //     origin: "Bolton",
+  //     destination: "Barrow In Furness",
+  //   },
+  //   {
+  //     id: 12,
+  //     name: "John Douglas",
+  //     year: 1957,
+  //     generation: 1,
+  //     origin: "Barrow In Furness",
+  //     destination: "Stockport",
+  //   },
+  //   {
+  //     id: 13,
+  //     name: "Kathleen Wolstenholme",
+  //     year: 1942,
+  //     generation: 2,
+  //     origin: "Sheffield",
+  //     destination: "Nottingham",
+  //   },
+  //   {
+  //     id: 14,
+  //     name: "Kathleen Wolstenholme",
+  //     year: 1957,
+  //     generation: 2,
+  //     origin: "Nottingham",
+  //     destination: "Sheffield",
+  //   },
+  //   {
+  //     id: 15,
+  //     name: "Eric Wolstenholme",
+  //     year: 1942,
+  //     generation: 2,
+  //     origin: "Sheffield",
+  //     destination: "Devon",
+  //   },
+  //   {
+  //     id: 16,
+  //     name: "Eric Wolstenholme",
+  //     year: 1945,
+  //     generation: 2,
+  //     origin: "Sheffield",
+  //     destination: "Greece",
+  //   },
+  //   {
+  //     id: 17,
+  //     name: "Eric Wolstenholme",
+  //     year: 1946,
+  //     generation: 2,
+  //     origin: "Greece",
+  //     destination: "Sheffield",
+  //   },
+  //   {
+  //     id: 18,
+  //     name: "Christina Douglas",
+  //     year: 1936,
+  //     generation: 2,
+  //     origin: "Bangalore",
+  //     destination: "Sale Cheshire",
+  //   },
+  //   {
+  //     id: 19,
+  //     name: "Christina Douglas",
+  //     year: 1954,
+  //     generation: 2,
+  //     origin: "Sale Cheshire",
+  //     destination: "Manchester",
+  //   },
+  //   {
+  //     id: 20,
+  //     name: "Christina Douglas",
+  //     year: 1957,
+  //     generation: 2,
+  //     origin: "Manchester",
+  //     destination: "Stockport",
+  //   },
+  //   {
+  //     id: 21,
+  //     name: "Joseph Douglas",
+  //     year: 1945,
+  //     generation: 2,
+  //     origin: "Barrow In Furness",
+  //     destination: "Singapore",
+  //   },
+  //   {
+  //     id: 22,
+  //     name: "Joseph Douglas",
+  //     year: 1947,
+  //     generation: 2,
+  //     origin: "Singapore",
+  //     destination: "Manchester",
+  //   },
+  //   {
+  //     id: 23,
+  //     name: "Joseph Douglas",
+  //     year: 1957,
+  //     generation: 2,
+  //     origin: "Manchester",
+  //     destination: "Stockport",
+  //   },
+  //   {
+  //     id: 24,
+  //     name: "Alison Douglas",
+  //     year: 1976,
+  //     generation: 3,
+  //     origin: "Sheffield",
+  //     destination: "Leicester",
+  //   },
+  //   {
+  //     id: 25,
+  //     name: "Alison Douglas",
+  //     year: 1980,
+  //     generation: 3,
+  //     origin: "Leicester",
+  //     destination: "Sheffield",
+  //   },
+  //   {
+  //     id: 26,
+  //     name: "Alison Douglas",
+  //     year: 1981,
+  //     generation: 3,
+  //     origin: "Sheffield",
+  //     destination: "Derby",
+  //   },
+  //   {
+  //     id: 27,
+  //     name: "Jeremy Douglas",
+  //     year: 1957,
+  //     generation: 3,
+  //     origin: "Manchester",
+  //     destination: "Stockport",
+  //   },
+  //   {
+  //     id: 28,
+  //     name: "Jeremy Douglas",
+  //     year: 1972,
+  //     generation: 3,
+  //     origin: "Stockport",
+  //     destination: "Liverpool",
+  //   },
+  //   {
+  //     id: 29,
+  //     name: "Jeremy Douglas",
+  //     year: 1976,
+  //     generation: 3,
+  //     origin: "Stockport",
+  //     destination: "Leicester",
+  //   },
+  //   {
+  //     id: 30,
+  //     name: "Jeremy Douglas",
+  //     year: 1979,
+  //     generation: 3,
+  //     origin: "Leicester",
+  //     destination: "Thurso",
+  //   },
+  //   {
+  //     id: 31,
+  //     name: "Jeremy Douglas",
+  //     year: 1981,
+  //     generation: 3,
+  //     origin: "Thurso",
+  //     destination: "Derby",
+  //   },
+  //   {
+  //     id: 32,
+  //     name: "Fraser Douglas",
+  //     year: 2013,
+  //     generation: 4,
+  //     origin: "Derby",
+  //     destination: "Liverpool",
+  //   },
+  //   {
+  //     id: 33,
+  //     name: "Fraser Douglas",
+  //     year: 2017,
+  //     generation: 4,
+  //     origin: "Liverpool",
+  //     destination: "Derby",
+  //   },
+  //   {
+  //     id: 34,
+  //     name: "Fraser Douglas",
+  //     year: 2018,
+  //     generation: 4,
+  //     origin: "Derby",
+  //     destination: "Liverpool",
+  //   },
+  //   {
+  //     id: 35,
+  //     name: "Fraser Douglas",
+  //     year: 2019,
+  //     generation: 4,
+  //     origin: "Liverpool",
+  //     destination: "Derby",
+  //   },
+  //   {
+  //     id: 36,
+  //     name: "Fraser Douglas",
+  //     year: 2021,
+  //     generation: 4,
+  //     origin: "Derby",
+  //     destination: "Manchester",
+  //   },
+  //   {
+  //     id: 37,
+  //     name: "Rowan Douglas",
+  //     year: 2010,
+  //     generation: 4,
+  //     origin: "Derby",
+  //     destination: "Coventry",
+  //   },
+  //   {
+  //     id: 38,
+  //     name: "Rowan Douglas",
+  //     year: 2011,
+  //     generation: 4,
+  //     origin: "Coventry",
+  //     destination: "Lemington Spa",
+  //   },
+  //   {
+  //     id: 39,
+  //     name: "Rowan Douglas",
+  //     year: 2013,
+  //     generation: 4,
+  //     origin: "Lemington Spa",
+  //     destination: "Coventry",
+  //   },
+  //   {
+  //     id: 40,
+  //     name: "Rowan Douglas",
+  //     year: 2014,
+  //     generation: 4,
+  //     origin: "Coventry",
+  //     destination: "London",
+  //   },
+  //   {
+  //     id: 41,
+  //     name: "Rowan Douglas",
+  //     year: 2019,
+  //     generation: 4,
+  //     origin: "London",
+  //     destination: "Whistler Canada",
+  //   },
+  //   {
+  //     id: 42,
+  //     name: "Rowan Douglas",
+  //     year: 2020,
+  //     generation: 4,
+  //     origin: "Whistler Canada",
+  //     destination: "Brazil",
+  //   },
+  //   {
+  //     id: 43,
+  //     name: "Rowan Douglas",
+  //     year: 2021,
+  //     generation: 4,
+  //     origin: "Brazil",
+  //     destination: "London",
+  //   },
+  //   {
+  //     id: 44,
+  //     name: "Rebecca Douglas",
+  //     year: 2008,
+  //     generation: 4,
+  //     origin: "Derby",
+  //     destination: "Kingston Upon Thames",
+  //   },
+  //   {
+  //     id: 45,
+  //     name: "Rebecca Douglas",
+  //     year: 2009,
+  //     generation: 4,
+  //     origin: "Kingston Upon Thames",
+  //     destination: "Derby",
+  //   },
+  //   {
+  //     id: 46,
+  //     name: "Rebecca Douglas",
+  //     year: 2012,
+  //     generation: 4,
+  //     origin: "Derby",
+  //     destination: "Birmingham",
+  //   },
+  //   {
+  //     id: 47,
+  //     name: "Rebecca Douglas",
+  //     year: 2015,
+  //     generation: 4,
+  //     origin: "Birmingham",
+  //     destination: "Reading",
+  //   },
+  // ]);
 
   const latestYearRef = useRef(2030);
   const distinctYearsRef = useRef([2000, 2005]);
@@ -680,26 +677,7 @@ function App() {
   };
 
   const handleSubmit = () => {
-    // localStorage.setItem(
-    //   "locationLookup",
-    //   JSON.stringify({
-    //     bangalore: { lat: 12.9715987, lon: 77.5945627 },
-    //     "barrow in furness": { lat: 54.108967, lon: -3.218894 },
-    //     bolton: { lat: 53.57686469999999, lon: -2.4282192 },
-    //     greece: { lat: 39.074208, lon: 21.824312 },
-    //     iraq: { lat: 33.223191, lon: 43.679291 },
-    //     leeds: { lat: 53.8007554, lon: -1.5490774 },
-    //     leicester: { lat: 52.6368778, lon: -1.1397592 },
-    //     manchester: { lat: 53.4807593, lon: -2.2426305 },
-    //     nottingham: { lat: 52.9540223, lon: -1.1549892 },
-    //     "sale cheshire": { lat: 53.42556099999999, lon: -2.323702 },
-    //     sheffield: { lat: 36.0950743, lon: -80.2788466 },
-    //     singapore: { lat: 1.352083, lon: 103.819836 },
-    //     stockport: { lat: 53.41063159999999, lon: -2.1575332 },
-    //     thurso: { lat: 58.593566, lon: -3.52208 },
-    //     wakefield: { lat: 42.5039395, lon: -71.0723391 },
-    //   })
-    // );
+    // localStorage.setItem("locationLookup", JSON.stringify({ london: {lat: '52.9212617', lon: '-1.4761491'},budapest: {lat: '52.9212617', lon: '-1.4761491'},edinburgh: {lat: '52.9212617', lon: '-1.4761491'},berlin: {lat: '52.9212617', lon: '-1.4761491'} }));
 
     clearInterval(timerRef.current);
     let yearsArray = stagedData.map((item) => {
@@ -738,10 +716,9 @@ function App() {
     let originsAndDestinationsDistinctArray = [
       ...new Set(originsAndDestinationsArray),
     ];
-    originsAndDestinationsDistinctArray =
-      originsAndDestinationsDistinctArray.map((item) => {
-        return item.toLowerCase();
-      });
+    originsAndDestinationsDistinctArray = originsAndDestinationsDistinctArray.map((item) => {
+      return item.toLowerCase()
+    })
     console.log(originsAndDestinationsDistinctArray);
     let locationLookup = JSON.parse(localStorage.getItem("locationLookup"));
     console.log(locationLookup);
@@ -759,8 +736,8 @@ function App() {
       console.log("NO FETCH NEEDED!");
       stagedData.forEach((item) => {
         let props = { ...item };
-        props.origin = props.origin.toLowerCase();
-        props.destination = props.destination.toLowerCase();
+        props.origin = props.origin.toLowerCase()
+        props.destination = props.destination.toLowerCase()
         props.oLat = Number(locationLookup[props.origin].lat);
         props.oLong = Number(locationLookup[props.origin].lon);
         props.dLat = Number(locationLookup[props.destination].lat);
@@ -780,12 +757,16 @@ function App() {
       });
 
       // SEGMENT ROUTES INTO PARTS
-      let steps = 150;
+      let steps = 500;
       geojsonArray.forEach((item) => {
         const lineDistance = length(item);
         const arc = [];
         let i = 0;
-        for (let loopCount = 0; loopCount < steps; i += lineDistance / steps) {
+        for (
+          let loopCount = 0;
+          loopCount < steps;
+          i += lineDistance / steps
+        ) {
           loopCount++;
           const segment = along(item, i);
           arc.push(segment.geometry.coordinates);
@@ -797,10 +778,11 @@ function App() {
         reformattedRoutes.features.push(feature);
       });
       setGeom(reformattedRoutes);
+
     } else {
       let fetchCalls = locationsDifference.map((query) => {
         return fetch(
-          `https://maps.googleapis.com/maps/api/geocode/json?address=${query}&key=AIzaSyCrQ342njdHobarlb2NmVavy2sgm_oKs90`
+          `https://nominatim.openstreetmap.org/search?format=json&q=${query}`
         );
       });
       fetchCalls.unshift(locationLookup);
@@ -824,15 +806,15 @@ function App() {
           console.log(locationLookup);
 
           let zeroIndexArray = result.map((item) => {
-            return item.results;
+            return item[0];
           });
           console.log(zeroIndexArray);
           console.log(originsAndDestinationsDistinctArray);
           for (let i = 0; i < locationsDifference.length; i++) {
             console.log(locationsDifference[i]);
             latLongLookup[locationsDifference[i]] = {
-              lat: zeroIndexArray[i][0].geometry.location.lat,
-              lon: zeroIndexArray[i][0].geometry.location.lng,
+              lat: zeroIndexArray[i]["lat"],
+              lon: zeroIndexArray[i]["lon"],
             };
             console.log(latLongLookup);
           }
@@ -846,8 +828,8 @@ function App() {
 
           stagedData.forEach((item) => {
             let props = { ...item };
-            props.origin = props.origin.toLowerCase();
-            props.destination = props.destination.toLowerCase();
+            props.origin = props.origin.toLowerCase()
+            props.destination = props.destination.toLowerCase()
             props.oLat = Number(mergedLatLongLookup[props.origin].lat);
             props.oLong = Number(mergedLatLongLookup[props.origin].lon);
             props.dLat = Number(mergedLatLongLookup[props.destination].lat);
@@ -883,6 +865,22 @@ function App() {
             }
             item.geometry.coordinates = arc;
           });
+
+          // Get unique list of names
+          // let uniqueNames = geojsonArray.map((item) => {
+          //   return item.properties.name;
+          // });
+          // uniqueNames = [...new Set(uniqueNames)];
+          // // For each name get an array of routes with each name
+          // // let uniqueNamesObject = {};
+          // uniqueNames.forEach((name) => {
+          //   let groupedByArray = geojsonArray.filter((personRoute) => {
+          //     return personRoute.properties.name === name;
+          //   });
+
+          //   // Sort by year
+          //   groupedByArray.sort((a, b) => a.properties.year - b.properties.year);
+          // });
           geojsonArray.forEach((feature) => {
             reformattedRoutes.features.push(feature);
           });
@@ -969,10 +967,30 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const style = {
+      version: 8,
+      sources: {
+        osm: {
+          type: "raster",
+          tiles: ["https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"],
+          tileSize: 256,
+          attribution: "&copy; OpenStreetMap Contributors",
+          maxzoom: 19,
+        },
+      },
+      layers: [
+        {
+          id: "osm",
+          type: "raster",
+          source: "osm", // This must match the source key above
+        },
+      ],
+    };
+
     // Initialise the map
-    const map = new mapboxgl.Map({
+    const map = new maplibreGl.Map({
       container: "map",
-      style: "mapbox://styles/mapbox/dark-v10",
+      style: style,
       center: [-2.24, 54.48],
       zoom: 7,
     });
@@ -987,92 +1005,81 @@ function App() {
         type: "geojson",
         data: points.current,
       });
-
       map.addLayer({
-        id: "routesBlackBackground",
+        id: "routesBlackGlow1",
         source: "route",
         type: "line",
         paint: {
-          "line-width": 6,
-          "line-opacity": 1,
-          "line-color": "#000000",
-        },
-        layout: {
-          "line-cap": "round",
-        },
-      });
-      map.addLayer({
-        id: "routesGlow1",
-        source: "route",
-        type: "line",
-        paint: {
-          "line-width": 5,
+          "line-width": 10,
+          "line-blur": 3,
           "line-opacity": 1,
           "line-color": [
             "interpolate",
             ["linear"],
             ["get", "generation"],
-            1,
-            "#E66100",
-            2,
-            "#1AFF1A",
-            3,
-            "#5D3A9B",
-            4,
-            "#1A85FF",
-            5,
-            "#D35FB7",
+            0,
+            "#03ff03",
+            10,
+            "#EE000E",
           ],
         },
-        layout: {
-          "line-cap": "round",
+      });
+      map.addLayer({
+        id: "routesBlackGlow2",
+        source: "route",
+        type: "line",
+        paint: {
+          "line-width": 5,
+          "line-blur": 3,
+          "line-opacity": 1,
+          "line-color": [
+            "interpolate",
+            ["linear"],
+            ["get", "generation"],
+            0,
+            "#03ff03",
+            10,
+            "#EE000E",
+          ],
         },
       });
+      map.addLayer({
+        id: "routesBlackGlow3",
+        source: "route",
+        type: "line",
+        paint: {
+          "line-width": 1,
+          "line-blur": 3,
+          "line-opacity": 1,
+          "line-color": [
+            "interpolate",
+            ["linear"],
+            ["get", "generation"],
+            0,
+            "#03ff03",
+            10,
+            "#EE000E",
+          ],
+        },
+      });
+
       map.addLayer({
         id: "points",
         source: "points",
         type: "circle",
         layout: {},
         paint: {
-          "circle-radius": 6,
-          "circle-stroke-width": 1,
-          "circle-stroke-color": "#000000",
+          "circle-radius": 10,
           "circle-color": [
             "interpolate",
             ["linear"],
             ["get", "generation"],
-            1,
-            "#E66100",
-            2,
-            "#1AFF1A",
-            3,
-            "#5D3A9B",
-            4,
-            "#1A85FF",
-            5,
-            "#D35FB7",
+            0,
+            "#03ff03",
+            10,
+            "#EE000E",
           ],
         },
-        filter: ["!=", "visibleToggle", 0],
-      });
-      map.addLayer({
-        id: "pointsLabels",
-        source: "points",
-        type: "symbol",
-        layout: {
-          "text-field": ["get", "name"],
-          "text-variable-anchor": ["top", "bottom", "left", "right"],
-          "text-radial-offset": 0.5,
-          "text-justify": "auto",
-          "icon-image": ["get", "icon"],
-          "text-size": 20,
-        },
-        paint: {
-          "text-color": "#FFFFFF",
-          "text-halo-color": "#000000",
-          "text-halo-width": 1,
-        },
-        filter: ["!=", "visibleToggle", 0],
       });
       setMap(map);
     });
@@ -1146,9 +1153,6 @@ function App() {
         for (let i = 0; i < geomCopy.features.length; i++) {
           let routeName = geomCopy.features[i].properties.name;
           let indexOfName = uniqueNames.indexOf(routeName);
-          // Turn the labels and point visilbity back on
-          points.current.features[indexOfName].properties.visibleToggle = 1;
-
           let start = geomCopy.features[i].geometry.coordinates[counter];
           let end = geomCopy.features[i].geometry.coordinates[counter + 1];
           if (start) {
@@ -1159,15 +1163,6 @@ function App() {
             // );
             // console.log(points.current);
             // counterTracker[i]++;
-          }
-
-          if (end === undefined) {
-            console.log(
-              "REMOVE THE POINT AND LABEL",
-              points.current.features[indexOfName]
-            );
-            // ADD CUSTOM TOGGLE IN DATA
-            points.current.features[indexOfName].properties.visibleToggle = 0;
           }
         }
 
@@ -1265,20 +1260,18 @@ function App() {
         <button onClick={handleAddition} id="addButton">
           Add
         </button>
-        <div id="dataContainer">
-          {stagedData.map((item, index) => {
-            return (
-              <div id="tableRow" key={`${item}${index}`}>
-                <div className="tableItem">{item.name}</div>
-                <div className="tableItem">{item.year}</div>
-                <div className="tableItem">{item.generation}</div>
-                <div className="tableItem">{item.origin}</div>
-                <div className="tableItem">{item.destination}</div>
-                <button onClick={() => handleDelete(item)}>X</button>
-              </div>
-            );
-          })}
-        </div>
+        {stagedData.map((item, index) => {
+          return (
+            <div id="tableRow" key={`${item}${index}`}>
+              <div className="tableItem">{item.name}</div>
+              <div className="tableItem">{item.year}</div>
+              <div className="tableItem">{item.generation}</div>
+              <div className="tableItem">{item.origin}</div>
+              <div className="tableItem">{item.destination}</div>
+              <button onClick={() => handleDelete(item)}>X</button>
+            </div>
+          );
+        })}
         <button type="submit" onClick={handleSubmit} id="submitButton">
           Start Animation
         </button>
