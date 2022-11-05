@@ -3,7 +3,7 @@ export let exampleGeojson = {
   features: [
     {
       type: "Feature",
-      properties: { name: 'fraser', generation: 5, year: 2000 },
+      properties: { name: "fraser", generation: 5, year: 2000 },
       geometry: {
         type: "LineString",
         coordinates: [
@@ -34,7 +34,7 @@ export let exampleGeojson = {
     },
     {
       type: "Feature",
-      properties: { name: 'megan', generation: 1, year: 2005 },
+      properties: { name: "megan", generation: 1, year: 2005 },
       geometry: {
         coordinates: [
           [-1.7423792083023955, 54.06700974349147],
@@ -51,7 +51,12 @@ export let exampleGeojson = {
     },
   ],
 };
-
+export let blankGeojson = {
+  type: "FeatureCollection",
+  features: [
+    
+  ],
+};
 export let point = {
   type: "FeatureCollection",
   name: "markers",

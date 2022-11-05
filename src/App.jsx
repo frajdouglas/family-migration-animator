@@ -2,8 +2,9 @@ import "./App.css";
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import { along, length } from "@turf/turf";
-import { exampleGeojson, point } from "./exampleGeojson";
+import { exampleGeojson, point, blankGeojson } from "./exampleGeojson";
 import mapboxgl from "mapbox-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZnJhamRvdWdsYXMiLCJhIjoiY2w4bGNxd3Z5MGRmdTN3c2Q1ZWF3aGRteSJ9.psCe4vsJM0PBLM6CBsIJDw";
@@ -107,7 +108,7 @@ function App() {
   //     year: 2000,
   //     generation: 10,
   //     origin: "london",
-  //     destination: "edinburgh",
+  //     destination: "edinburgh uk",
   //   },
   //   {
   //     id: 3,
@@ -130,7 +131,7 @@ function App() {
   //     name: "Megan",
   //     year: 2001,
   //     generation: 5,
-  //     origin: "skegness",
+  //     origin: "skegness uk",
   //     destination: "oslo",
   //   },
   //   {
@@ -618,6 +619,7 @@ function App() {
   const mapContainer = useRef();
   const [mapState, setMap] = useState(null);
   const [geom, setGeom] = useState(exampleGeojson);
+  const geomBlank = useRef(blankGeojson);
   const points = useRef(point);
   const requestIdArray = useRef([]);
 
@@ -780,7 +782,7 @@ function App() {
       });
 
       // SEGMENT ROUTES INTO PARTS
-      let steps = 150;
+      let steps = 300;
       geojsonArray.forEach((item) => {
         const lineDistance = length(item);
         const arc = [];
@@ -889,86 +891,10 @@ function App() {
           setGeom(reformattedRoutes);
         });
     }
-
-    // .then((result) => {
-    //   let zeroIndexArray = result.map((item) => {
-    //     return item[0];
-    //   });
-    //   for (let i = 0; i < originsAndDestinationsDistinctArray.length; i++) {
-    //     latLongLookup[originsAndDestinationsDistinctArray[i]] = {
-    //       lat: zeroIndexArray[i]["lat"],
-    //       lon: zeroIndexArray[i]["lon"],
-    //     };
-    //   }
-    //   stagedData.forEach((item) => {
-    //     let props = { ...item };
-    //     props.oLat = Number(latLongLookup[props.origin].lat);
-    //     props.oLong = Number(latLongLookup[props.origin].lon);
-    //     props.dLat = Number(latLongLookup[props.destination].lat);
-    //     props.dLong = Number(latLongLookup[props.destination].lon);
-    //     let firstCoordinates = [props.oLong, props.oLat];
-    //     let secondCoordinates = [props.dLong, props.dLat];
-
-    //     let featureToPush = {
-    //       type: "Feature",
-    //       properties: props,
-    //       geometry: {
-    //         type: "LineString",
-    //         coordinates: [firstCoordinates, secondCoordinates],
-    //       },
-    //     };
-    //     geojsonArray.push(featureToPush);
-    //   });
-
-    //   // SEGMENT ROUTES INTO PARTS
-    //   let steps = 500;
-    //   geojsonArray.forEach((item) => {
-    //     const lineDistance = length(item);
-    //     const arc = [];
-    //     let i = 0;
-    //     for (
-    //       let loopCount = 0;
-    //       loopCount < steps;
-    //       i += lineDistance / steps
-    //     ) {
-    //       loopCount++;
-    //       const segment = along(item, i);
-    //       arc.push(segment.geometry.coordinates);
-    //     }
-    //     item.geometry.coordinates = arc;
-    //   });
-
-    //   // Get unique list of names
-    //   let uniqueNames = geojsonArray.map((item) => {
-    //     return item.properties.name;
-    //   });
-    //   uniqueNames = [...new Set(uniqueNames)];
-    //   // For each name get an array of routes with each name
-    //   // let uniqueNamesObject = {};
-    //   uniqueNames.forEach((name) => {
-    //     let groupedByArray = geojsonArray.filter((personRoute) => {
-    //       return personRoute.properties.name === name;
-    //     });
-
-    //     // Sort by year
-    //     groupedByArray.sort((a, b) => a.properties.year - b.properties.year);
-    //   });
-    //   geojsonArray.forEach((feature) => {
-    //     reformattedRoutes.features.push(feature);
-    //   });
-    //   setGeom(reformattedRoutes);
-    // });
   };
 
   useEffect(() => {
-    timerRef.current = setInterval(refreshTime, 1000);
-
-    return () => {
-      clearInterval(timerRef.current);
-    };
-  }, []);
-
-  useEffect(() => {
+    console.log("USEEFFECT, MAKE MAP");
     // Initialise the map
     const map = new mapboxgl.Map({
       container: "map",
@@ -981,9 +907,9 @@ function App() {
       // Add a source and layer displaying a point which will be animated in a circle.
       map.addSource("route", {
         type: "geojson",
-        data: geom,
+        data: geomBlank.current,
       });
-      map.addSource("points", {
+      map.addSource("pointsTEST", {
         type: "geojson",
         data: points.current,
       });
@@ -1029,8 +955,8 @@ function App() {
         },
       });
       map.addLayer({
-        id: "points",
-        source: "points",
+        id: "pointsTEST",
+        source: "pointsTEST",
         type: "circle",
         layout: {},
         paint: {
@@ -1057,7 +983,7 @@ function App() {
       });
       map.addLayer({
         id: "pointsLabels",
-        source: "points",
+        source: "pointsTEST",
         type: "symbol",
         layout: {
           "text-field": ["get", "name"],
@@ -1083,6 +1009,10 @@ function App() {
   }, []);
 
   useEffect(() => {
+    console.log(
+      "USEEFFECT, CREATE POINTS AND BLANK ROUTES THEN SET TIME AS EARLIEST YEAR IN DATA"
+    );
+
     if (mapState) {
       // make points geojson from geom state
       let pointsNew = {
@@ -1094,6 +1024,14 @@ function App() {
         },
         features: [],
       };
+      // make routes geojson from geom state
+
+      let routeToBeAddedTo = {
+        type: "FeatureCollection",
+        features: [],
+      };
+
+
       // GET UNIQUE NAMES FROM ROUTES AND CREATE ONE POINT PER ROUTE IN SAME ORDER
       // ADD GENERATION HERE TO GET  COLOUR IN POINTS
       let namesList = geom.features.map((feature) => {
@@ -1108,8 +1046,26 @@ function App() {
       for (let i = 0; i < namesList.length; i++) {
         nameToGenerationLookup[namesList[i]] = generationsList[i];
       }
-
+      console.log({
+        routeToBeAddedTo,
+        namesList,
+        uniqueNames,
+        generationsList,
+      });
+      namesList.forEach((item) => {
+        let routeFeatureTemplate = {
+          type: "Feature",
+          properties: { name: item, generation: nameToGenerationLookup[item] },
+          geometry: {
+            type: "LineString",
+            coordinates: [],
+          },
+        };
+        routeToBeAddedTo.features.push(routeFeatureTemplate);
+      });
       uniqueNames.forEach((item) => {
+        console.log(routeToBeAddedTo, pointsNew, item);
+
         let pointFeatureTemplate = {
           type: "Feature",
           properties: { name: item, generation: nameToGenerationLookup[item] },
@@ -1118,13 +1074,17 @@ function App() {
         pointsNew.features.push(pointFeatureTemplate);
       });
       points.current = pointsNew;
-      mapState.getSource("route").setData(geom);
+      geomBlank.current = routeToBeAddedTo;
+      console.log(geomBlank.current);
+      mapState.getSource("route").setData(geomBlank.current);
+      mapState.getSource("pointsTEST").setData(points.current);
+
       setTime(earliestYearRef.current);
     }
   }, [mapState, geom]);
 
   useEffect(() => {
-    // console.log(geom,"GEOM IN TIME USEEFFECT")
+    console.log("ANIMATE IF TIME EQUALS YEAR IN DATA");
 
     if (distinctYearsRef.current.includes(time)) {
       console.log(distinctYearsRef.current, time);
@@ -1132,47 +1092,48 @@ function App() {
       let counter = 0;
       clearInterval(timerRef.current);
       let geomCopy = { ...geom };
+      // THIS IS DUPLICATED LOGIC
+      let namesList = geomCopy.features.map((feature) => {
+        return feature.properties.name;
+      });
+      let uniqueNames = [...new Set(namesList)];
       geomCopy.features = geomCopy.features.filter((item) => {
         return Number(item.properties.year) === time;
       });
       let totalCycles = geomCopy.features[0].geometry.coordinates.length;
-      // THIS IS DUPLICATED LOGIC
-      let namesList = geom.features.map((feature) => {
-        return feature.properties.name;
-      });
-      let uniqueNames = [...new Set(namesList)];
-
       function animate() {
         for (let i = 0; i < geomCopy.features.length; i++) {
           let routeName = geomCopy.features[i].properties.name;
-          let indexOfName = uniqueNames.indexOf(routeName);
+          let indexOfNameForPoints = uniqueNames.indexOf(routeName);
+          let indexOfNameForRoutes = namesList.indexOf(routeName);
+
           // Turn the labels and point visilbity back on
-          points.current.features[indexOfName].properties.visibleToggle = 1;
+          points.current.features[indexOfNameForPoints].properties.visibleToggle = 1;
 
           let start = geomCopy.features[i].geometry.coordinates[counter];
           let end = geomCopy.features[i].geometry.coordinates[counter + 1];
           if (start) {
-            points.current.features[indexOfName].geometry.coordinates =
+            points.current.features[indexOfNameForPoints].geometry.coordinates =
               geomCopy.features[i].geometry.coordinates[counter];
-            // geomCopy.features[i].geometry.coordinates.push(
-            //   geomCopy.features[i].geometry.coordinates[counter]
-            // );
-            // console.log(points.current);
+            // console.log(i);
+
+            geomBlank.current.features[indexOfNameForRoutes].geometry.coordinates.push(
+              geomCopy.features[i].geometry.coordinates[counter]
+            );
+            // console.log(geomBlank.current.features[i]);
             // counterTracker[i]++;
           }
 
           if (end === undefined) {
-            console.log(
-              "REMOVE THE POINT AND LABEL",
-              points.current.features[indexOfName]
-            );
             // ADD CUSTOM TOGGLE IN DATA
-            points.current.features[indexOfName].properties.visibleToggle = 0;
+            points.current.features[indexOfNameForPoints].properties.visibleToggle = 0;
           }
         }
 
         // Update the source with this new data
-        mapState.getSource("points").setData(points.current);
+        mapState.getSource("pointsTEST").setData(points.current);
+        mapState.getSource("route").setData(geomBlank.current);
+
         if (counter < totalCycles - 1) {
           setTimeout(function () {
             let requestId = requestAnimationFrame(animate);
@@ -1191,10 +1152,23 @@ function App() {
       animate(counter);
     }
     if (latestYearRef.current === time) {
+      console.log(geomBlank.current);
+      console.log(exampleGeojson);
+
       console.log("STOP ANIMATION");
       clearInterval(timerRef.current);
     }
   }, [time]);
+
+  useEffect(() => {
+    console.log("SET UP THE CLOCK AND START THE TIMER");
+
+    timerRef.current = setInterval(refreshTime, 1000);
+
+    return () => {
+      clearInterval(timerRef.current);
+    };
+  }, []);
 
   return (
     <div id="App">
