@@ -4,36 +4,46 @@
   padding: 0;
 }
 
-#Clock{
+#Clock {
   position: absolute;
   right: 1vw;
   top: 1vh;
   z-index: 10;
   border: 5px solid black;
   border-radius: 10px;
-font-size: 70px;
-background-color: white;
+  font-size: 70px;
+  background-color: white;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 #map {
+  z-index: -1;
   position: absolute;
-  left: 30%;
-  top: 0vh;
-  width: 70%;
+  left: 0%;
+  width: 100%;
   height: 100%;
-  /* border: 5px solid pink; */
-  /* box-sizing: border-box; */
+  padding: 4px;
+  box-sizing: border-box;
 }
 
 #toolbar {
+  position: absolute;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   width: 30%;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  height: 100vh;
-  border: 1px solid blue;
+  height: 95vh;
+  left: 10px;
+  top: 15px;
+  border: 1px solid black;
   box-sizing: border-box;
-
+  border-radius: 10px;
+  padding: 4px;
+  background-color: white;
+  align-items: center;
+  gap:10px;
 }
 
 #tableRow {
@@ -45,30 +55,40 @@ background-color: white;
   align-items: center;
   padding: 5px;
   box-sizing: border-box;
-
 }
-
+#tableRowHighlighted {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: red;
+}
 .tableItem {
   border: 1px solid black;
-  gap:1px;
-  width: 8vw;
+  gap: 1px;
+  width: 100%;
   min-height: 5vh;
   font-size: 13px;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-
 }
 
-#dataContainer{
-  border: 1px solid green;
+#dataContainer {
   overflow: auto;
+  width: 100%;
 
 }
 
-#title{
+#title {
   font-size: 50px;
   padding: 5px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 #inputsContainer {
@@ -80,7 +100,5 @@ background-color: white;
 
 .inputBox {
   width: 5vw;
-  /* border: 5px solid blue; */
   box-sizing: border-box;
 }
-
