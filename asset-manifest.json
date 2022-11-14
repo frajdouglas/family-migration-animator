@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/family-migration-animator/static/css/main.513d9153.css",
+    "main.js": "/family-migration-animator/static/js/main.00bbbb24.js",
+    "index.html": "/family-migration-animator/index.html",
+    "main.513d9153.css.map": "/family-migration-animator/static/css/main.513d9153.css.map",
+    "main.00bbbb24.js.map": "/family-migration-animator/static/js/main.00bbbb24.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.513d9153.css",
+    "static/js/main.00bbbb24.js"
+  ]
+}
