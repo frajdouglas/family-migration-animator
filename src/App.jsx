@@ -15,7 +15,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
-mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;
+mapboxgl.accessToken = "pk.eyJ1IjoiZnJhamRvdWdsYXMiLCJhIjoiY2xhOGU4eDBxMDJyZDNwbW82eXZ6aGlvNCJ9.QP0LnnWewyg2C-yHj3Vrtw"
 
 function App() {
   // State and reference for timer
