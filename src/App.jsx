@@ -15,7 +15,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
-mapboxgl.accessToken = "pk.eyJ1IjoiZnJhamRvdWdsYXMiLCJhIjoiY2xhOGU4eDBxMDJyZDNwbW82eXZ6aGlvNCJ9.QP0LnnWewyg2C-yHj3Vrtw"
+mapboxgl.accessToken = "pk.eyJ1IjoiZnJhamRvdWdsYXMiLCJhIjoiY2xpN20xZWJwMWp0MjNwbndnaTAwbWxqcSJ9.qfgJA4V0xpk6Q2e_sQZ2YQ"
 
 function App() {
   // State and reference for timer
