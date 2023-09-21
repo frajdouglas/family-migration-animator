@@ -1,7 +1,8 @@
 import "./App.css";
 import React from "react";
 import { useState, useRef, useEffect } from "react";
-import { along, length } from "@turf/turf";
+import along from "@turf/along";
+import length from "@turf/length";
 import {
   exampleGeojson,
   point,
