@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/family-migration-animator/static/css/main.4387aa30.css",
-    "main.js": "/family-migration-animator/static/js/main.7129d994.js",
+    "main.css": "/family-migration-animator/static/css/main.30f22063.css",
+    "main.js": "/family-migration-animator/static/js/main.2b3e4423.js",
     "index.html": "/family-migration-animator/index.html",
-    "main.4387aa30.css.map": "/family-migration-animator/static/css/main.4387aa30.css.map",
-    "main.7129d994.js.map": "/family-migration-animator/static/js/main.7129d994.js.map"
+    "main.30f22063.css.map": "/family-migration-animator/static/css/main.30f22063.css.map",
+    "main.2b3e4423.js.map": "/family-migration-animator/static/js/main.2b3e4423.js.map"
   },
   "entrypoints": [
-    "static/css/main.4387aa30.css",
-    "static/js/main.7129d994.js"
+    "static/css/main.30f22063.css",
+    "static/js/main.2b3e4423.js"
   ]
 }
